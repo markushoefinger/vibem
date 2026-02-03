@@ -2,6 +2,81 @@
 
 import { useState } from 'react';
 
+// Minimal SVG Icons
+const Icons = {
+  target: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2" />
+    </svg>
+  ),
+  sparkle: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path d="M12 2v4m0 12v4m10-10h-4M6 12H2m15.07-7.07l-2.83 2.83M9.76 14.24l-2.83 2.83m11.14 0l-2.83-2.83M9.76 9.76L6.93 6.93" />
+    </svg>
+  ),
+  bolt: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+    </svg>
+  ),
+  user: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </svg>
+  ),
+  cpu: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <rect x="4" y="4" width="16" height="16" rx="2" />
+      <rect x="9" y="9" width="6" height="6" />
+      <path d="M9 1v3m6-3v3M9 20v3m6-3v3M1 9h3m-3 6h3M20 9h3m-3 6h3" />
+    </svg>
+  ),
+  receipt: (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path d="M9 14l2 2 4-4" />
+      <path d="M4 4v16l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V4l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1z" />
+    </svg>
+  ),
+  calendar: (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <rect x="3" y="4" width="18" height="18" rx="2" />
+      <path d="M16 2v4M8 2v4M3 10h18" />
+    </svg>
+  ),
+  check: (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path d="M20 6L9 17l-5-5" />
+    </svg>
+  ),
+  mail: (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="M22 6l-10 7L2 6" />
+    </svg>
+  ),
+  chart: (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path d="M3 3v18h18" />
+      <path d="M7 16l4-4 4 4 6-6" />
+    </svg>
+  ),
+  wallet: (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <rect x="2" y="6" width="20" height="14" rx="2" />
+      <path d="M2 10h20" />
+      <circle cx="16" cy="14" r="1" />
+    </svg>
+  ),
+  arrow: (
+    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
+    </svg>
+  ),
+};
+
 // Project data
 const projects = [
   {
@@ -11,6 +86,7 @@ const projects = [
     status: 'live',
     url: 'https://billdock.io',
     color: 'primary',
+    icon: Icons.receipt,
   },
   {
     name: 'Jenda',
@@ -19,6 +95,7 @@ const projects = [
     status: 'live',
     url: 'https://jenda.app',
     color: 'coral',
+    icon: Icons.calendar,
   },
   {
     name: 'Zero-Friction Tasks',
@@ -27,6 +104,7 @@ const projects = [
     status: 'live',
     url: 'https://zerofriction.app',
     color: 'primary',
+    icon: Icons.check,
   },
   {
     name: 'StarReply',
@@ -35,6 +113,7 @@ const projects = [
     status: 'coming',
     url: 'https://starreply.at',
     color: 'coral',
+    icon: Icons.mail,
   },
   {
     name: 'Ohne Aktien wird schwer',
@@ -43,6 +122,7 @@ const projects = [
     status: 'coming',
     url: '#',
     color: 'primary',
+    icon: Icons.chart,
   },
   {
     name: 'Sea Wallet',
@@ -51,7 +131,15 @@ const projects = [
     status: 'coming',
     url: '#',
     color: 'coral',
+    icon: Icons.wallet,
   },
+];
+
+const philosophyItems = [
+  { icon: Icons.target, title: 'Minimalism', desc: "If it adds complexity, it doesn't ship." },
+  { icon: Icons.sparkle, title: 'Attention to Detail', desc: "The things most won't notice but everyone will feel." },
+  { icon: Icons.bolt, title: 'Zero Friction', desc: 'One tap. One task. Done.' },
+  { icon: Icons.user, title: 'User First', desc: 'From user needs backwards to technology.' },
 ];
 
 export default function Home() {
@@ -140,14 +228,11 @@ export default function Home() {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              {[
-                { icon: '🎯', title: 'Minimalism', desc: 'If it adds complexity, it doesn\'t ship.' },
-                { icon: '✨', title: 'Attention to Detail', desc: 'The things most won\'t notice but everyone will feel.' },
-                { icon: '⚡', title: 'Zero Friction', desc: 'One tap. One task. Done.' },
-                { icon: '👤', title: 'User First', desc: 'From user needs backwards to technology.' },
-              ].map((item) => (
+              {philosophyItems.map((item) => (
                 <div key={item.title} className="p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl">
-                  <div className="text-2xl mb-3">{item.icon}</div>
+                  <div className="w-10 h-10 rounded-xl bg-[var(--primary-bg)] text-[var(--primary)] flex items-center justify-center mb-3">
+                    {item.icon}
+                  </div>
                   <h3 className="font-semibold text-[var(--text-strong)] mb-1">{item.title}</h3>
                   <p className="text-xs text-[var(--text-muted)]">{item.desc}</p>
                 </div>
@@ -160,8 +245,8 @@ export default function Home() {
       {/* AI Section */}
       <section className="py-20 px-6 bg-[var(--card)] border-y border-[var(--border)]">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="w-16 h-16 rounded-2xl bg-[var(--coral-bg)] flex items-center justify-center mx-auto mb-6">
-            <span className="text-3xl">🤖</span>
+          <div className="w-16 h-16 rounded-2xl bg-[var(--coral-bg)] text-[var(--coral)] flex items-center justify-center mx-auto mb-6">
+            {Icons.cpu}
           </div>
           <h2 className="text-3xl font-bold text-[var(--text-strong)] mb-4">
             AI That Actually Helps
@@ -197,7 +282,7 @@ export default function Home() {
                 href={project.url}
                 target={project.url !== '#' ? '_blank' : undefined}
                 rel="noopener noreferrer"
-                className={`group relative p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl transition-all hover:border-[var(--${project.color})] hover:shadow-lg hover:-translate-y-1 ${project.url === '#' ? 'cursor-default' : ''}`}
+                className={`group relative p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl transition-all hover:border-[var(--primary)] hover:shadow-lg hover:-translate-y-1 ${project.url === '#' ? 'cursor-default' : ''}`}
                 onMouseEnter={() => setHoveredProject(project.name)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
@@ -216,10 +301,8 @@ export default function Home() {
                 </div>
 
                 {/* Project Icon */}
-                <div className={`w-12 h-12 rounded-xl mb-4 flex items-center justify-center ${project.color === 'primary' ? 'bg-[var(--primary-bg)]' : 'bg-[var(--coral-bg)]'}`}>
-                  <span className={`text-xl font-bold ${project.color === 'primary' ? 'text-[var(--primary)]' : 'text-[var(--coral)]'}`}>
-                    {project.name.charAt(0)}
-                  </span>
+                <div className={`w-12 h-12 rounded-xl mb-4 flex items-center justify-center ${project.color === 'primary' ? 'bg-[var(--primary-bg)] text-[var(--primary)]' : 'bg-[var(--coral-bg)] text-[var(--coral)]'}`}>
+                  {project.icon}
                 </div>
 
                 <h3 className="text-lg font-bold text-[var(--text-strong)] mb-1 group-hover:text-[var(--primary)] transition-colors">
@@ -234,10 +317,8 @@ export default function Home() {
 
                 {/* Hover Arrow */}
                 {project.url !== '#' && (
-                  <div className={`absolute bottom-6 right-6 w-8 h-8 rounded-full bg-[var(--bg)] flex items-center justify-center transition-all ${hoveredProject === project.name ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}>
-                    <svg className="w-4 h-4 text-[var(--primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                  <div className={`absolute bottom-6 right-6 w-8 h-8 rounded-full bg-[var(--bg)] flex items-center justify-center transition-all text-[var(--primary)] ${hoveredProject === project.name ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}>
+                    {Icons.arrow}
                   </div>
                 )}
               </a>
@@ -266,8 +347,9 @@ export default function Home() {
             href="mailto:hello@vibem.net"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--primary)] text-white font-semibold rounded-xl hover:bg-[var(--primary-light)] transition-all hover:-translate-y-0.5 shadow-lg shadow-[var(--primary)]/20"
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="M22 6l-10 7L2 6" />
             </svg>
             hello@vibem.net
           </a>
