@@ -206,8 +206,61 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About */}
+      {/* Founder */}
       <section id="about" className="py-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-5 gap-12 items-start">
+            {/* Photo & Badge */}
+            <div className="md:col-span-2 flex flex-col items-center text-center">
+              <div className="relative mb-4">
+                <img 
+                  src="/founder.png" 
+                  alt="Markus Höfinger - Founder VibeM"
+                  className="w-40 h-40 rounded-2xl object-cover border-4 border-[var(--border)]"
+                />
+                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-[var(--primary)] text-white text-xs font-semibold rounded-full">
+                  Founder
+                </span>
+              </div>
+              <h3 className="text-xl font-bold text-[var(--text-strong)]">Markus Höfinger</h3>
+              <p className="text-sm text-[var(--text-muted)] mb-4">Founder, VibeM</p>
+              <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Vienna, Austria
+              </div>
+            </div>
+
+            {/* Story */}
+            <div className="md:col-span-3">
+              <p className="text-lg text-[var(--text)] mb-4 leading-relaxed">
+                &ldquo;I&apos;ve been building digital products since 1993 — when I founded Austria&apos;s first internet agency at 23. 
+                Since then, I&apos;ve spent 30+ years in the digital space, from startups to leading a 150-person team at Accenture Song.&rdquo;
+              </p>
+              <p className="text-[var(--text)] mb-4">
+                Today, I&apos;m back to my roots: building products. Not for enterprises with endless budgets, but for real people with real problems. 
+                The kind of tools I&apos;d want to use myself.
+              </p>
+              <p className="text-[var(--text)] mb-6">
+                VibeM is my answer to 30 years of watching software promise simplicity and deliver complexity. 
+                We build micro-SaaS that actually makes sense — one perfect use case at a time.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {['30+ Years Digital', 'Serial Founder', 'WU Vienna', 'Product-First'].map((tag) => (
+                  <span key={tag} className="px-3 py-1 bg-[var(--primary-bg)] text-[var(--primary)] text-xs font-medium rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Philosophy */}
+      <section className="py-24 px-6 bg-[var(--card)] border-y border-[var(--border)]">
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -228,7 +281,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {philosophyItems.map((item) => (
-                <div key={item.title} className="p-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl">
+                <div key={item.title} className="p-5 bg-[var(--bg)] border border-[var(--border)] rounded-2xl">
                   <div className="w-10 h-10 rounded-xl bg-[var(--primary-bg)] text-[var(--primary)] flex items-center justify-center mb-3">
                     {item.icon}
                   </div>
