@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Logo } from '@/components/Logo';
 
 // Minimal SVG Icons
 const Icons = {
@@ -151,9 +152,7 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[var(--bg)]/90 border-b border-[var(--border)]">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <a href="#" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-[var(--primary)] flex items-center justify-center">
-              <span className="text-white font-bold text-lg">V</span>
-            </div>
+            <Logo size={36} />
             <span className="font-bold text-xl text-[var(--text-strong)]">VibeM</span>
           </a>
           <div className="flex items-center gap-6 text-sm">
@@ -361,9 +360,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-[var(--primary)] flex items-center justify-center">
-                <span className="text-white font-bold">V</span>
-              </div>
+              <Logo size={32} />
               <span className="font-semibold text-[var(--text-strong)]">VibeM</span>
               <span className="text-[var(--text-muted)]">— Micro-SaaS Studio, Vienna</span>
             </div>
