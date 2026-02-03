@@ -1,26 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base colors - Bill.Dock theme */
+  --bg: #FBF8F3;
+  --bg-elevated: #FFFFFF;
+  --card: #FFFFFF;
+  --text: #374151;
+  --text-strong: #1F2937;
+  --text-muted: #9CA3AF;
+  --border: #E8E4DC;
+  --border-light: #F0EDE6;
+
+  /* Brand colors */
+  --primary: #247259;
+  --primary-light: #3D8A6D;
+  --primary-bg: rgba(36, 114, 89, 0.08);
+
+  --coral: #F26B42;
+  --coral-light: #F59373;
+  --coral-bg: rgba(242, 107, 66, 0.08);
+
+  /* Semantic colors */
+  --success: #16A34A;
+  --success-bg: rgba(22, 163, 74, 0.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection */
+::selection {
+  background: var(--primary);
+  color: white;
 }
