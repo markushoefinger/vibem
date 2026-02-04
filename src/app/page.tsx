@@ -180,6 +180,7 @@ export default function Home() {
           <div className="flex items-center gap-6 text-sm">
             <a href="#about" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">About</a>
             <a href="#projects" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">Projects</a>
+            <a href="/usage" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">Usage</a>
             <a href="#contact" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">Contact</a>
           </div>
         </div>
