@@ -132,7 +132,7 @@ const projects = [
   {
     name: 'OAWS Performance',
     tagline: 'Podcast Investment Tracker',
-    description: 'Aktienerwähnungen aus dem "Ohne Aktien wird schwer" Podcast vs. S&P 500 Index. Investment-Tracking seit August 2024.',
+    description: 'Stock picks from the "Ohne Aktien wird schwer" podcast vs. S&P 500 Index. Investment tracking since August 2024.',
     status: 'live',
     url: 'https://oaws-performance.vercel.app/',
     color: 'primary',
@@ -149,8 +149,8 @@ const projects = [
   },
   {
     name: 'Jaukerl',
-    tagline: 'ELGA e-Impfpass Analyse',
-    description: 'Analysiere deinen österreichischen ELGA e-Impfpass. Schnell, sicher, privat.',
+    tagline: 'Vaccination Record Analyzer',
+    description: 'Analyze your Austrian ELGA vaccination records. Fast, secure, private.',
     status: 'live',
     url: 'https://www.jaukerl.com/',
     color: 'primary',
