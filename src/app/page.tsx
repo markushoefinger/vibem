@@ -165,6 +165,33 @@ const projects = [
     color: 'coral',
     icon: Icons.calendar,
   },
+  {
+    name: 'ETF-Sparplan-Rechner',
+    tagline: 'ETF Savings Calculator',
+    description: 'The simplest yet most advanced ETF savings plan calculator. Plan your wealth.',
+    status: 'live',
+    url: 'https://etf-rechner-sparplan.de',
+    color: 'primary',
+    icon: Icons.chart,
+  },
+  {
+    name: 'Grouple',
+    tagline: 'Group Payments Made Easy',
+    description: 'Split bills and collect group payments frictionlessly. No app downloads needed.',
+    status: 'coming',
+    url: 'https://grouple.net',
+    color: 'coral',
+    icon: Icons.wallet,
+  },
+  {
+    name: 'HireSift',
+    tagline: 'AI Applicant Screening',
+    description: 'AI-powered hiring that sifts through applicants and shortlists the right talent.',
+    status: 'coming',
+    url: 'https://hiresift.ai',
+    color: 'primary',
+    icon: Icons.user,
+  },
 ];
 
 const philosophyItems = [
