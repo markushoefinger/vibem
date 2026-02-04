@@ -424,15 +424,20 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-12 px-6 border-t border-[var(--border)]">
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
             <div className="flex items-center gap-3">
               <Logo size={32} />
               <span className="font-semibold text-[var(--text-strong)]">VibeM</span>
               <span className="text-[var(--text-muted)]">— Micro-SaaS Studio, Vienna</span>
             </div>
-            <div className="text-sm text-[var(--text-muted)]">
-              © {new Date().getFullYear()} S&C Holding GmbH. All rights reserved.
+            <div className="flex items-center gap-6 text-sm">
+              <a href="/legal/imprint" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">Imprint</a>
+              <a href="/legal/privacy" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">Privacy</a>
+              <a href="/legal/terms" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">Terms</a>
             </div>
+          </div>
+          <div className="text-center text-sm text-[var(--text-muted)]">
+            © {new Date().getFullYear()} S&C Holding GmbH. All rights reserved.
           </div>
         </div>
       </footer>
