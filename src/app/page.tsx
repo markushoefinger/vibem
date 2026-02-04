@@ -157,11 +157,11 @@ const projects = [
     icon: Icons.health,
   },
   {
-    name: 'Scheduler',
+    name: 'Sheduler',
     tagline: 'Dynamic Event Agendas',
     description: 'Beautiful multi-day workshop agendas with automatic calendar sync for participants.',
     status: 'coming',
-    url: 'https://scheduler.com',
+    url: 'https://www.sheduler.com',
     color: 'coral',
     icon: Icons.calendar,
   },
