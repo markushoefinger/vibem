@@ -122,8 +122,8 @@ const projects = [
   },
   {
     name: 'StarReply',
-    tagline: 'Smart Email Responses',
-    description: 'AI-powered email templates that actually sound like you.',
+    tagline: 'Automated Google Review Replies',
+    description: 'AI-powered replies that sound like you. Connect Google Business Profile, never worry about reviews again.',
     status: 'coming',
     url: 'https://starreply.ai',
     color: 'coral',
