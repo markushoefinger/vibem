@@ -169,7 +169,7 @@ const projects = [
     name: 'ETF-Sparplan-Rechner',
     tagline: 'ETF Savings Calculator',
     description: 'The simplest yet most advanced ETF savings plan calculator. Plan your wealth.',
-    status: 'live',
+    status: 'coming',
     url: 'https://etf-rechner-sparplan.de',
     color: 'primary',
     icon: Icons.chart,
