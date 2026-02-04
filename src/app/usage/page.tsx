@@ -294,8 +294,33 @@ export default function UsagePage() {
           />
         </div>
 
-        {/* Setup Instructions */}
+        {/* Session Categories */}
         <div className="mt-8 p-6 bg-[var(--card)] border border-[var(--border)] rounded-xl">
+          <h3 className="font-semibold text-[var(--text-strong)] mb-4">OpenClaw Session Categories</h3>
+          <p className="text-sm text-[var(--text-muted)] mb-4">
+            Token usage is tracked per API key, not per session. OpenClaw sessions are categorized as:
+          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { name: 'Discord Channels', pattern: 'discord:channel:*', examples: '#development, #reddit, #sxsw', color: 'primary' },
+              { name: 'Telegram', pattern: 'telegram:*', examples: 'Direct messages', color: 'coral' },
+              { name: 'Heartbeat/Main', pattern: 'main:main', examples: 'Heartbeat polls', color: 'primary' },
+              { name: 'Cron Jobs', pattern: 'cron:*', examples: 'Email Monitor, Reddit Builder', color: 'coral' },
+              { name: 'Sub-agents', pattern: 'spawn:*', examples: 'Background tasks', color: 'primary' },
+            ].map((cat) => (
+              <div key={cat.name} className={`p-4 rounded-lg ${cat.color === 'primary' ? 'bg-[var(--primary-bg)]' : 'bg-[var(--coral-bg)]'}`}>
+                <p className={`font-medium ${cat.color === 'primary' ? 'text-[var(--primary)]' : 'text-[var(--coral)]'}`}>{cat.name}</p>
+                <p className="text-xs text-[var(--text-muted)] mt-1">{cat.examples}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-[var(--text-muted)] mt-4 italic">
+            Note: Per-session historical usage tracking requires custom instrumentation in OpenClaw.
+          </p>
+        </div>
+
+        {/* Setup Instructions */}
+        <div className="mt-6 p-6 bg-[var(--card)] border border-[var(--border)] rounded-xl">
           <h3 className="font-semibold text-[var(--text-strong)] mb-4">Setup Instructions</h3>
           <div className="grid md:grid-cols-2 gap-6 text-sm">
             <div>
