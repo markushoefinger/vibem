@@ -6,15 +6,14 @@ import { Logo } from '@/components/Logo';
 
 interface UsageData {
   period: string;
-  startDate: string;
-  endDate: string;
   error?: string;
   hint?: string;
   processed?: {
     totalInputTokens: number;
     totalOutputTokens: number;
     totalTokens: number;
-    byModel: Record<string, { input: number; output: number; total: number }>;
+    totalRequests?: number;
+    byModel: Record<string, { input: number; output: number; total: number; requests?: number }>;
     byPeriod: Array<{ date: string; input: number; output: number; total: number }>;
     estimatedCost: number;
   };
@@ -30,41 +29,198 @@ const periods = [
 function formatNumber(num: number): string {
   if (num >= 1_000_000) return (num / 1_000_000).toFixed(2) + 'M';
   if (num >= 1_000) return (num / 1_000).toFixed(1) + 'K';
-  return num.toString();
+  return num.toLocaleString();
 }
 
 function formatCost(cost: number): string {
   return '$' + cost.toFixed(2);
 }
 
+function UsageCard({ 
+  title, 
+  data, 
+  loading, 
+  error, 
+  hint,
+  color 
+}: { 
+  title: string; 
+  data: UsageData['processed'] | null; 
+  loading: boolean; 
+  error: string | null;
+  hint?: string;
+  color: 'primary' | 'coral';
+}) {
+  const colorClasses = color === 'primary' 
+    ? { bg: 'bg-[var(--primary-bg)]', text: 'text-[var(--primary)]', bar: 'bg-[var(--primary)]' }
+    : { bg: 'bg-[var(--coral-bg)]', text: 'text-[var(--coral)]', bar: 'bg-[var(--coral)]' };
+
+  const maxTokens = data?.byPeriod?.reduce((max, p) => Math.max(max, p.total), 0) || 1;
+
+  if (loading) {
+    return (
+      <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6">
+        <h2 className="text-lg font-semibold text-[var(--text-strong)] mb-4">{title}</h2>
+        <div className="flex items-center justify-center py-12">
+          <div className={`w-6 h-6 border-2 ${colorClasses.text} border-t-transparent rounded-full animate-spin`}></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6">
+        <h2 className="text-lg font-semibold text-[var(--text-strong)] mb-4">{title}</h2>
+        <div className={`p-4 ${colorClasses.bg} rounded-lg`}>
+          <p className={`text-sm ${colorClasses.text} font-medium mb-1`}>Setup Required</p>
+          <p className="text-sm text-[var(--text)]">{error}</p>
+          {hint && <p className="text-xs text-[var(--text-muted)] mt-2">{hint}</p>}
+        </div>
+      </div>
+    );
+  }
+
+  if (!data) {
+    return (
+      <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6">
+        <h2 className="text-lg font-semibold text-[var(--text-strong)] mb-4">{title}</h2>
+        <p className="text-[var(--text-muted)] text-center py-8">No data available</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6">
+      <h2 className="text-lg font-semibold text-[var(--text-strong)] mb-6">{title}</h2>
+      
+      {/* Stats Row */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+        <div className={`${colorClasses.bg} rounded-lg p-3`}>
+          <p className="text-xs text-[var(--text-muted)]">Total</p>
+          <p className={`text-xl font-bold ${colorClasses.text}`}>{formatNumber(data.totalTokens)}</p>
+        </div>
+        <div className="bg-[var(--bg)] rounded-lg p-3">
+          <p className="text-xs text-[var(--text-muted)]">Input</p>
+          <p className="text-xl font-bold text-[var(--text-strong)]">{formatNumber(data.totalInputTokens)}</p>
+        </div>
+        <div className="bg-[var(--bg)] rounded-lg p-3">
+          <p className="text-xs text-[var(--text-muted)]">Output</p>
+          <p className="text-xl font-bold text-[var(--text-strong)]">{formatNumber(data.totalOutputTokens)}</p>
+        </div>
+        <div className="bg-[var(--bg)] rounded-lg p-3">
+          <p className="text-xs text-[var(--text-muted)]">Est. Cost</p>
+          <p className="text-xl font-bold text-[var(--text-strong)]">{formatCost(data.estimatedCost)}</p>
+        </div>
+      </div>
+
+      {/* Chart */}
+      {data.byPeriod.length > 0 && (
+        <div className="mb-6">
+          <p className="text-sm font-medium text-[var(--text-muted)] mb-3">Usage Over Time</p>
+          <div className="space-y-2">
+            {data.byPeriod.slice(-7).map((item) => (
+              <div key={item.date} className="flex items-center gap-3">
+                <span className="text-xs text-[var(--text-muted)] w-16 shrink-0">
+                  {new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                </span>
+                <div className="flex-1 h-5 bg-[var(--bg)] rounded overflow-hidden flex">
+                  <div 
+                    className={colorClasses.bar}
+                    style={{ width: `${(item.total / maxTokens) * 100}%` }}
+                  />
+                </div>
+                <span className="text-xs font-medium text-[var(--text-strong)] w-14 text-right">
+                  {formatNumber(item.total)}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* By Model */}
+      {Object.keys(data.byModel).length > 0 && (
+        <div>
+          <p className="text-sm font-medium text-[var(--text-muted)] mb-3">By Model</p>
+          <div className="space-y-2">
+            {Object.entries(data.byModel)
+              .sort(([,a], [,b]) => b.total - a.total)
+              .slice(0, 5)
+              .map(([model, stats]) => (
+              <div key={model} className="flex items-center justify-between p-3 bg-[var(--bg)] rounded-lg">
+                <div>
+                  <p className="text-sm font-medium text-[var(--text-strong)]">{model}</p>
+                  <p className="text-xs text-[var(--text-muted)]">
+                    {formatNumber(stats.input)} in / {formatNumber(stats.output)} out
+                  </p>
+                </div>
+                <p className={`text-lg font-bold ${colorClasses.text}`}>{formatNumber(stats.total)}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function UsagePage() {
   const [period, setPeriod] = useState('week');
-  const [data, setData] = useState<UsageData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  
+  const [anthropicData, setAnthropicData] = useState<UsageData | null>(null);
+  const [anthropicLoading, setAnthropicLoading] = useState(true);
+  const [anthropicError, setAnthropicError] = useState<string | null>(null);
+  
+  const [openaiData, setOpenaiData] = useState<UsageData | null>(null);
+  const [openaiLoading, setOpenaiLoading] = useState(true);
+  const [openaiError, setOpenaiError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchUsage() {
-      setLoading(true);
-      setError(null);
+    async function fetchAnthropicUsage() {
+      setAnthropicLoading(true);
+      setAnthropicError(null);
       try {
         const res = await fetch(`/api/anthropic-usage?period=${period}`);
         const json = await res.json();
-        setData(json);
+        setAnthropicData(json);
         if (json.error && !json.processed) {
-          setError(json.error);
+          setAnthropicError(json.error);
         }
-      } catch (e) {
-        setError('Failed to fetch usage data');
+      } catch {
+        setAnthropicError('Failed to fetch');
       } finally {
-        setLoading(false);
+        setAnthropicLoading(false);
       }
     }
-    fetchUsage();
+
+    async function fetchOpenaiUsage() {
+      setOpenaiLoading(true);
+      setOpenaiError(null);
+      try {
+        const res = await fetch(`/api/openai-usage?period=${period}`);
+        const json = await res.json();
+        setOpenaiData(json);
+        if (json.error && !json.processed) {
+          setOpenaiError(json.error);
+        }
+      } catch {
+        setOpenaiError('Failed to fetch');
+      } finally {
+        setOpenaiLoading(false);
+      }
+    }
+
+    fetchAnthropicUsage();
+    fetchOpenaiUsage();
   }, [period]);
 
-  const processed = data?.processed;
-  const maxTokens = processed?.byPeriod?.reduce((max, p) => Math.max(max, p.total), 0) || 1;
+  // Combined totals
+  const anthropicProcessed = anthropicData?.processed;
+  const openaiProcessed = openaiData?.processed;
+  
+  const combinedTotal = (anthropicProcessed?.totalTokens || 0) + (openaiProcessed?.totalTokens || 0);
+  const combinedCost = (anthropicProcessed?.estimatedCost || 0) + (openaiProcessed?.estimatedCost || 0);
 
   return (
     <div className="min-h-screen bg-[var(--bg)]">
@@ -82,10 +238,10 @@ export default function UsagePage() {
       </nav>
 
       <main className="max-w-5xl mx-auto px-6 py-12">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="text-3xl font-bold text-[var(--text-strong)]">Token Usage</h1>
-            <p className="text-[var(--text-muted)] mt-1">Anthropic API usage statistics</p>
+            <p className="text-[var(--text-muted)] mt-1">API usage statistics across all providers</p>
           </div>
           
           {/* Period Selector */}
@@ -106,105 +262,62 @@ export default function UsagePage() {
           </div>
         </div>
 
-        {/* Error/Setup Message */}
-        {error && (
-          <div className="mb-8 p-6 bg-[var(--coral-bg)] border border-[var(--coral)] rounded-xl">
-            <h3 className="font-semibold text-[var(--coral)] mb-2">Setup Required</h3>
-            <p className="text-[var(--text)] mb-4">{error}</p>
-            {data?.hint && (
-              <p className="text-sm text-[var(--text-muted)]">{data.hint}</p>
-            )}
+        {/* Combined Summary */}
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6">
+            <p className="text-sm text-[var(--text-muted)] mb-1">Total Tokens (All Providers)</p>
+            <p className="text-4xl font-bold text-[var(--text-strong)]">{formatNumber(combinedTotal)}</p>
           </div>
-        )}
-
-        {loading ? (
-          <div className="flex items-center justify-center py-24">
-            <div className="w-8 h-8 border-2 border-[var(--primary)] border-t-transparent rounded-full animate-spin"></div>
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6">
+            <p className="text-sm text-[var(--text-muted)] mb-1">Est. Total Cost</p>
+            <p className="text-4xl font-bold text-[var(--text-strong)]">{formatCost(combinedCost)}</p>
           </div>
-        ) : processed ? (
-          <>
-            {/* Stats Cards */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6">
-                <p className="text-sm text-[var(--text-muted)] mb-1">Total Tokens</p>
-                <p className="text-3xl font-bold text-[var(--text-strong)]">{formatNumber(processed.totalTokens)}</p>
-              </div>
-              <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6">
-                <p className="text-sm text-[var(--text-muted)] mb-1">Input Tokens</p>
-                <p className="text-3xl font-bold text-[var(--primary)]">{formatNumber(processed.totalInputTokens)}</p>
-              </div>
-              <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6">
-                <p className="text-sm text-[var(--text-muted)] mb-1">Output Tokens</p>
-                <p className="text-3xl font-bold text-[var(--coral)]">{formatNumber(processed.totalOutputTokens)}</p>
-              </div>
-              <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6">
-                <p className="text-sm text-[var(--text-muted)] mb-1">Est. Cost</p>
-                <p className="text-3xl font-bold text-[var(--text-strong)]">{formatCost(processed.estimatedCost)}</p>
-              </div>
-            </div>
+        </div>
 
-            {/* Usage Chart */}
-            <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 mb-8">
-              <h2 className="text-lg font-semibold text-[var(--text-strong)] mb-6">Usage Over Time</h2>
-              <div className="space-y-3">
-                {processed.byPeriod.map((item) => (
-                  <div key={item.date} className="flex items-center gap-4">
-                    <span className="text-sm text-[var(--text-muted)] w-24 shrink-0">
-                      {new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                    </span>
-                    <div className="flex-1 h-8 bg-[var(--bg)] rounded-lg overflow-hidden flex">
-                      <div 
-                        className="h-full bg-[var(--primary)]"
-                        style={{ width: `${(item.input / maxTokens) * 100}%` }}
-                        title={`Input: ${formatNumber(item.input)}`}
-                      />
-                      <div 
-                        className="h-full bg-[var(--coral)]"
-                        style={{ width: `${(item.output / maxTokens) * 100}%` }}
-                        title={`Output: ${formatNumber(item.output)}`}
-                      />
-                    </div>
-                    <span className="text-sm font-medium text-[var(--text-strong)] w-20 text-right">
-                      {formatNumber(item.total)}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <div className="flex items-center gap-6 mt-4 pt-4 border-t border-[var(--border)]">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded bg-[var(--primary)]"></div>
-                  <span className="text-sm text-[var(--text-muted)]">Input</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded bg-[var(--coral)]"></div>
-                  <span className="text-sm text-[var(--text-muted)]">Output</span>
-                </div>
-              </div>
-            </div>
+        {/* Provider Cards */}
+        <div className="grid md:grid-cols-2 gap-6">
+          <UsageCard
+            title="Anthropic (Claude)"
+            data={anthropicProcessed || null}
+            loading={anthropicLoading}
+            error={anthropicError}
+            hint={anthropicData?.hint}
+            color="primary"
+          />
+          <UsageCard
+            title="OpenAI (GPT)"
+            data={openaiProcessed || null}
+            loading={openaiLoading}
+            error={openaiError}
+            hint={openaiData?.hint}
+            color="coral"
+          />
+        </div>
 
-            {/* By Model */}
-            <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6">
-              <h2 className="text-lg font-semibold text-[var(--text-strong)] mb-6">Usage by Model</h2>
-              <div className="space-y-4">
-                {Object.entries(processed.byModel).map(([model, stats]) => (
-                  <div key={model} className="flex items-center justify-between p-4 bg-[var(--bg)] rounded-lg">
-                    <div>
-                      <p className="font-medium text-[var(--text-strong)]">{model}</p>
-                      <p className="text-sm text-[var(--text-muted)]">
-                        {formatNumber(stats.input)} in / {formatNumber(stats.output)} out
-                      </p>
-                    </div>
-                    <p className="text-xl font-bold text-[var(--primary)]">{formatNumber(stats.total)}</p>
-                  </div>
-                ))}
-              </div>
+        {/* Setup Instructions */}
+        <div className="mt-8 p-6 bg-[var(--card)] border border-[var(--border)] rounded-xl">
+          <h3 className="font-semibold text-[var(--text-strong)] mb-4">Setup Instructions</h3>
+          <div className="grid md:grid-cols-2 gap-6 text-sm">
+            <div>
+              <p className="font-medium text-[var(--primary)] mb-2">Anthropic</p>
+              <ol className="list-decimal list-inside text-[var(--text-muted)] space-y-1">
+                <li>Go to console.anthropic.com</li>
+                <li>Settings → Admin API Keys</li>
+                <li>Create new Admin Key</li>
+                <li>Add <code className="bg-[var(--bg)] px-1 rounded">ANTHROPIC_ADMIN_API_KEY</code> to Vercel</li>
+              </ol>
             </div>
-          </>
-        ) : (
-          <div className="text-center py-24 text-[var(--text-muted)]">
-            No usage data available
+            <div>
+              <p className="font-medium text-[var(--coral)] mb-2">OpenAI</p>
+              <ol className="list-decimal list-inside text-[var(--text-muted)] space-y-1">
+                <li>Go to platform.openai.com</li>
+                <li>Settings → Organization → Admin Keys</li>
+                <li>Create new Admin Key</li>
+                <li>Add <code className="bg-[var(--bg)] px-1 rounded">OPENAI_ADMIN_API_KEY</code> to Vercel</li>
+              </ol>
+            </div>
           </div>
-        )}
+        </div>
       </main>
     </div>
   );
