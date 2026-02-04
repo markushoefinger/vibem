@@ -242,8 +242,8 @@ export default function Home() {
             Micro-SaaS Studio
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-[var(--text-strong)] mb-6 leading-tight">
-            Building the future,<br />
-            <span className="text-[var(--primary)]">one friction at a time.</span>
+            Removing friction,<br />
+            <span className="text-[var(--primary)]">one tool at a time.</span>
           </h1>
           <p className="text-xl text-[var(--text)] max-w-2xl mx-auto mb-10">
             We find everyday annoyances and build AI-powered tools that make them disappear. 
