@@ -343,7 +343,7 @@ export default function Home() {
             {/* Story */}
             <div className="md:col-span-3">
               <p className="text-lg text-[var(--text)] mb-4 leading-relaxed">
-                &ldquo;I&apos;ve been building digital products since 1993 — when I founded Austria&apos;s first internet agency at 23. 
+                &ldquo;I&apos;ve been building digital products since 1993 — when I co-founded Austria&apos;s first internet agency at 23. 
                 Since then, I&apos;ve spent 30+ years in the digital space, from startups to leading a 150-person team at Accenture Song.&rdquo;
               </p>
               <p className="text-[var(--text)] mb-4">
