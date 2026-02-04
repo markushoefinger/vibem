@@ -71,6 +71,19 @@ const Icons = {
       <circle cx="16" cy="14" r="1" />
     </svg>
   ),
+  ship: (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path d="M3 17l2 4h14l2-4" />
+      <path d="M5 17V9l7-4 7 4v8" />
+      <path d="M12 5v8" />
+    </svg>
+  ),
+  health: (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z" />
+      <path d="M12 8v8m-4-4h8" />
+    </svg>
+  ),
   arrow: (
     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
       <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -101,7 +114,7 @@ const projects = [
   {
     name: 'Zero-Friction Tasks',
     tagline: 'Personal Task Manager',
-    description: 'One tap. One task. Done. Task management stripped to its essence.',
+    description: 'The first and only Todo app that syncs iOS and Windows natively. One tap. One task. Done.',
     status: 'live',
     url: 'https://zerofriction.app',
     color: 'primary',
@@ -112,27 +125,36 @@ const projects = [
     tagline: 'Smart Email Responses',
     description: 'AI-powered email templates that actually sound like you.',
     status: 'coming',
-    url: 'https://starreply.at',
+    url: 'https://starreply.ai',
     color: 'coral',
     icon: Icons.mail,
   },
   {
-    name: 'Ohne Aktien wird schwer',
-    tagline: 'Performance Tracker',
-    description: 'Track your stock portfolio performance with clarity and precision.',
-    status: 'coming',
-    url: '#',
+    name: 'OAWS Performance',
+    tagline: 'Podcast Investment Tracker',
+    description: 'Aktienerwähnungen aus dem "Ohne Aktien wird schwer" Podcast vs. S&P 500 Index. Investment-Tracking seit August 2024.',
+    status: 'live',
+    url: 'https://oaws-performance.vercel.app/',
     color: 'primary',
     icon: Icons.chart,
   },
   {
-    name: 'Sea Wallet',
-    tagline: 'Crypto Portfolio',
-    description: 'Simple, beautiful crypto tracking without the complexity.',
-    status: 'coming',
-    url: '#',
+    name: 'Seajet Wallet',
+    tagline: 'Ferry Tickets to Wallet',
+    description: 'Convert your SEAJETS ferry tickets to Apple or Google Wallet. Board faster.',
+    status: 'live',
+    url: 'https://seajetswallet.onrender.com/',
     color: 'coral',
-    icon: Icons.wallet,
+    icon: Icons.ship,
+  },
+  {
+    name: 'Jaukerl',
+    tagline: 'ELGA e-Impfpass Analyse',
+    description: 'Analysiere deinen österreichischen ELGA e-Impfpass. Schnell, sicher, privat.',
+    status: 'live',
+    url: 'https://www.jaukerl.com/',
+    color: 'primary',
+    icon: Icons.health,
   },
 ];
 
@@ -248,7 +270,7 @@ export default function Home() {
                 We build micro-SaaS that actually makes sense — one perfect use case at a time.
               </p>
               <div className="flex flex-wrap gap-2">
-                {['30+ Years Digital', 'Serial Founder', 'WU Vienna', 'Product-First'].map((tag) => (
+                {['30+ Years Digital', 'Serial Founder', 'Product-First'].map((tag) => (
                   <span key={tag} className="px-3 py-1 bg-[var(--primary-bg)] text-[var(--primary)] text-xs font-medium rounded-full">
                     {tag}
                   </span>
@@ -376,15 +398,6 @@ export default function Home() {
               </a>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Quote */}
-      <section className="py-16 px-6 bg-[var(--primary)]">
-        <div className="max-w-3xl mx-auto text-center">
-          <blockquote className="text-2xl md:text-3xl font-medium text-white/90 italic">
-            &ldquo;When you try to be everything to everyone, you end up being nothing to anyone.&rdquo;
-          </blockquote>
         </div>
       </section>
 
