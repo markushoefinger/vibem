@@ -156,6 +156,15 @@ const projects = [
     color: 'primary',
     icon: Icons.health,
   },
+  {
+    name: 'Scheduler',
+    tagline: 'Dynamic Event Agendas',
+    description: 'Beautiful multi-day workshop agendas with automatic calendar sync for participants.',
+    status: 'coming',
+    url: 'https://scheduler.com',
+    color: 'coral',
+    icon: Icons.calendar,
+  },
 ];
 
 const philosophyItems = [
