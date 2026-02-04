@@ -167,6 +167,7 @@ const philosophyItems = [
 
 export default function Home() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen">
@@ -177,13 +178,68 @@ export default function Home() {
             <Logo size={36} />
             <span className="font-bold text-xl text-[var(--text-strong)]">VibeM</span>
           </a>
-          <div className="flex items-center gap-6 text-sm">
+          
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-6 text-sm">
             <a href="#about" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">About</a>
             <a href="#projects" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">Projects</a>
             <a href="/usage" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">Usage</a>
             <a href="#contact" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">Contact</a>
           </div>
+
+          {/* Mobile Burger Button */}
+          <button 
+            className="md:hidden p-2 text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? (
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-[var(--border)] bg-[var(--bg)]">
+            <div className="px-6 py-4 flex flex-col gap-4">
+              <a 
+                href="#about" 
+                className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About
+              </a>
+              <a 
+                href="#projects" 
+                className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Projects
+              </a>
+              <a 
+                href="/usage" 
+                className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Usage
+              </a>
+              <a 
+                href="#contact" 
+                className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </a>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero */}
