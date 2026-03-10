@@ -84,6 +84,17 @@ const Icons = {
       <path d="M12 8v8m-4-4h8" />
     </svg>
   ),
+  scan: (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path d="M3 7V5a2 2 0 012-2h2m10 0h2a2 2 0 012 2v2m0 10v2a2 2 0 01-2 2h-2M7 21H5a2 2 0 01-2-2v-2" />
+      <circle cx="12" cy="12" r="4" />
+    </svg>
+  ),
+  plane: (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 00-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
+    </svg>
+  ),
   arrow: (
     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
       <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -110,6 +121,24 @@ const projects = [
     url: 'https://jenda.app',
     color: 'coral',
     icon: Icons.calendar,
+  },
+  {
+    name: 'AgentSpeed',
+    tagline: 'AI Agent Readiness Scanner',
+    description: 'Like PageSpeed, but for AI agents. Scans your site for invisible barriers that block AI agents and gives you actionable fixes.',
+    status: 'live',
+    url: 'https://agentspeed.dev',
+    color: 'coral',
+    icon: Icons.scan,
+  },
+  {
+    name: 'OpenPAX',
+    tagline: 'Flight Booking API for AI',
+    description: 'Where AI agents book travel. Search 300+ airlines, book flights via REST API or MCP server. Flat €9.99 per booking.',
+    status: 'live',
+    url: 'https://openpax.ai',
+    color: 'primary',
+    icon: Icons.plane,
   },
   {
     name: 'Zero-Friction Tasks',
