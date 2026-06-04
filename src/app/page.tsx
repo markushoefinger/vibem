@@ -241,7 +241,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <a href="#" className="flex items-center gap-3">
             <Logo size={36} />
-            <span className="font-bold text-xl text-[var(--text-strong)]">VibeM</span>
+            <span className="font-bold text-xl text-[var(--text-strong)]">SpacerGIF</span>
           </a>
           
           {/* Desktop Navigation */}
@@ -351,7 +351,7 @@ export default function Home() {
               <div className="relative mb-4">
                 <img 
                   src="/founder.png" 
-                  alt="Markus Höfinger - Founder VibeM"
+                  alt="Markus Höfinger - Founder SpacerGIF"
                   className="w-40 h-40 rounded-2xl object-cover border-4 border-[var(--border)]"
                 />
                 <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-[var(--primary)] text-white text-xs font-semibold rounded-full">
@@ -359,7 +359,7 @@ export default function Home() {
                 </span>
               </div>
               <h3 className="text-xl font-bold text-[var(--text-strong)]">Markus Höfinger</h3>
-              <p className="text-sm text-[var(--text-muted)] mb-4">Founder, VibeM</p>
+              <p className="text-sm text-[var(--text-muted)] mb-4">Founder, SpacerGIF</p>
               <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -381,7 +381,7 @@ export default function Home() {
                 The kind of tools I&apos;d want to use myself.
               </p>
               <p className="text-[var(--text)] mb-6">
-                VibeM is my answer to 30 years of watching software promise simplicity and deliver complexity. 
+                SpacerGIF is my answer to 30 years of watching software promise simplicity and deliver complexity. 
                 We build micro-SaaS that actually makes sense — one perfect use case at a time.
               </p>
               <div className="flex flex-wrap gap-2">
@@ -524,14 +524,14 @@ export default function Home() {
             Have an everyday problem that deserves a better solution? We&apos;d love to hear about it.
           </p>
           <a 
-            href="mailto:hello@vibem.net"
+            href="mailto:hello@spacer-gif.com"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--primary)] text-white font-semibold rounded-xl hover:bg-[var(--primary-light)] transition-all hover:-translate-y-0.5 shadow-lg shadow-[var(--primary)]/20"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <rect x="2" y="4" width="20" height="16" rx="2" />
               <path d="M22 6l-10 7L2 6" />
             </svg>
-            hello@vibem.net
+            hello@spacer-gif.com
           </a>
         </div>
       </section>
@@ -542,7 +542,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
             <div className="flex items-center gap-3">
               <Logo size={32} />
-              <span className="font-semibold text-[var(--text-strong)]">VibeM</span>
+              <span className="font-semibold text-[var(--text-strong)]">SpacerGIF</span>
               <span className="text-[var(--text-muted)]">— Micro-SaaS Studio, Vienna</span>
             </div>
             <div className="flex items-center gap-6 text-sm">

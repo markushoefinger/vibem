@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { Logo } from '@/components/Logo';
 
 export const metadata = {
-  title: 'Imprint - VibeM',
-  description: 'Legal notice for VibeM',
+  title: 'Imprint - SpacerGIF',
+  description: 'Legal notice for SpacerGIF',
 };
 
 export default function Imprint() {
@@ -14,7 +14,7 @@ export default function Imprint() {
         <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
             <Logo size={36} />
-            <span className="font-bold text-xl text-[var(--text-strong)]">VibeM</span>
+            <span className="font-bold text-xl text-[var(--text-strong)]">SpacerGIF</span>
           </Link>
           <Link href="/" className="text-sm text-[var(--text-muted)] hover:text-[var(--primary)]">
             ← Back to Home
@@ -38,9 +38,9 @@ export default function Imprint() {
             1070 Vienna, Austria
           </p>
           <p className="text-[var(--text)] mb-4">
-            Brand: VibeM<br />
-            Website: <a href="https://www.vibem.net" className="text-[var(--primary)] hover:underline">www.vibem.net</a><br />
-            Email: <a href="mailto:info@vibem.net" className="text-[var(--primary)] hover:underline">info@vibem.net</a><br />
+            Brand: SpacerGIF<br />
+            Website: <a href="https://www.spacer-gif.com" className="text-[var(--primary)] hover:underline">www.spacer-gif.com</a><br />
+            Email: <a href="mailto:info@spacer-gif.com" className="text-[var(--primary)] hover:underline">info@spacer-gif.com</a><br />
             VAT ID: ATU70341613
           </p>
 
@@ -86,7 +86,7 @@ export default function Imprint() {
           <h2 className="text-xl font-semibold text-[var(--text-strong)] mt-8 mb-4">External Links</h2>
           <p className="text-[var(--text)] mb-4">
             S&C Holding GmbH expressly distances itself from all content of all externally linked pages on this website 
-            and does not adopt this content as its own. This declaration applies to all external links on vibem.net.
+            and does not adopt this content as its own. This declaration applies to all external links on spacer-gif.com.
           </p>
 
           <h2 className="text-xl font-semibold text-[var(--text-strong)] mt-8 mb-4">Data Protection</h2>

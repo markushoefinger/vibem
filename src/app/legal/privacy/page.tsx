@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { Logo } from '@/components/Logo';
 
 export const metadata = {
-  title: 'Privacy Policy - VibeM',
-  description: 'Privacy policy for VibeM',
+  title: 'Privacy Policy - SpacerGIF',
+  description: 'Privacy policy for SpacerGIF',
 };
 
 export default function Privacy() {
@@ -14,7 +14,7 @@ export default function Privacy() {
         <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
             <Logo size={36} />
-            <span className="font-bold text-xl text-[var(--text-strong)]">VibeM</span>
+            <span className="font-bold text-xl text-[var(--text-strong)]">SpacerGIF</span>
           </Link>
           <Link href="/" className="text-sm text-[var(--text-muted)] hover:text-[var(--primary)]">
             ← Back to Home
@@ -29,7 +29,7 @@ export default function Privacy() {
         
         <div className="prose prose-gray max-w-none space-y-8">
           <p className="text-[var(--text)]">
-            S&C Holding GmbH (&quot;we&quot;, &quot;us&quot;, &quot;VibeM&quot;) operates the VibeM website (www.vibem.net) and related applications. 
+            S&C Holding GmbH (&quot;we&quot;, &quot;us&quot;, &quot;SpacerGIF&quot;) operates the SpacerGIF website (www.spacer-gif.com) and related applications. 
             This Privacy Policy explains how we collect, use, and protect your personal data.
           </p>
 
@@ -38,7 +38,7 @@ export default function Privacy() {
             <p className="text-[var(--text)]">
               S&C Holding GmbH<br />
               Halbgasse 1a, 1070 Vienna, Austria<br />
-              Email: <a href="mailto:info@vibem.net" className="text-[var(--primary)] hover:underline">info@vibem.net</a><br />
+              Email: <a href="mailto:info@spacer-gif.com" className="text-[var(--primary)] hover:underline">info@spacer-gif.com</a><br />
               VAT ID: ATU70341613<br />
               Managing Director: Mag. Markus Höfinger
             </p>
@@ -143,7 +143,7 @@ export default function Privacy() {
             </ul>
             <p className="text-[var(--text)] mt-4">
               To exercise these rights, contact us at{' '}
-              <a href="mailto:info@vibem.net" className="text-[var(--primary)] hover:underline">info@vibem.net</a>.
+              <a href="mailto:info@spacer-gif.com" className="text-[var(--primary)] hover:underline">info@spacer-gif.com</a>.
             </p>
           </section>
 
@@ -168,7 +168,7 @@ export default function Privacy() {
               For privacy-related inquiries:<br />
               S&C Holding GmbH<br />
               Halbgasse 1a, 1070 Vienna, Austria<br />
-              Email: <a href="mailto:info@vibem.net" className="text-[var(--primary)] hover:underline">info@vibem.net</a>
+              Email: <a href="mailto:info@spacer-gif.com" className="text-[var(--primary)] hover:underline">info@spacer-gif.com</a>
             </p>
             <p className="text-[var(--text)] mt-4">
               You may also lodge a complaint with the Austrian Data Protection Authority:<br />

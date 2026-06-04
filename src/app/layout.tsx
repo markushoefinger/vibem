@@ -2,20 +2,20 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "VibeM — Micro-SaaS Studio",
+  title: "SpacerGIF — Micro-SaaS Studio",
   description: "Removing friction, one tool at a time. AI-powered tools that solve everyday problems.",
   keywords: ["micro-saas", "ai", "startup", "vienna", "productivity", "tools"],
-  authors: [{ name: "VibeM" }],
+  authors: [{ name: "SpacerGIF" }],
   openGraph: {
-    title: "VibeM — Micro-SaaS Studio",
+    title: "SpacerGIF — Micro-SaaS Studio",
     description: "Removing friction, one tool at a time.",
-    url: "https://vibem.net",
-    siteName: "VibeM",
+    url: "https://spacer-gif.com",
+    siteName: "SpacerGIF",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "VibeM — Micro-SaaS Studio",
+    title: "SpacerGIF — Micro-SaaS Studio",
     description: "Removing friction, one tool at a time.",
   },
   icons: {
