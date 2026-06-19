@@ -4,12 +4,22 @@ import { useState } from 'react';
 import { Logo } from '@/components/Logo';
 
 // Project data
-const projects = [
-  { name: 'Bill.Dock', tagline: 'AI Receipt & Expense Scanner', description: 'Snap a photo. Done. AI extracts everything and creates tax-ready expense reports.', status: 'live', url: 'https://billdock.io', devStart: '2025-11', logo: '/logos/billdock.png' },
+type Project = {
+  name: string;
+  tagline: string;
+  description: string;
+  status: string;
+  url: string;
+  devStart: string;
+  logo: string;
+  favorite?: boolean;
+};
+const projects: Project[] = [
+  { name: 'Bill.Dock', tagline: 'AI Receipt & Expense Scanner', description: 'Snap a photo. Done. AI extracts everything and creates tax-ready expense reports.', status: 'live', url: 'https://billdock.io', devStart: '2025-11', favorite: true, logo: '/logos/billdock.png' },
   { name: 'Jenda', tagline: 'Subscription Tracker', description: 'Connect Gmail or forward receipts. AI detects your subscriptions automatically. No bank access needed.', status: 'live', url: 'https://jenda.app', devStart: '2026-01', logo: '/logos/jenda.png' },
   { name: 'AgentSpeed', tagline: 'AI Agent Readiness Scanner', description: 'Like PageSpeed, but for AI agents. Scans your site for invisible barriers that block AI agents and gives you actionable fixes.', status: 'live', url: 'https://agentspeed.dev', devStart: '2026-03', logo: '/logos/agentspeed.png' },
-  { name: 'OpenPAX', tagline: 'Flight Booking API for AI', description: 'Where AI agents book travel. Search 300+ airlines, book flights via REST API or MCP server. Flat €9.99 per booking.', status: 'live', url: 'https://openpax.ai', devStart: '2026-02', logo: '/logos/openpax.png' },
-  { name: 'Zero-Friction Tasks', tagline: 'Personal Task Manager', description: 'The first and only Todo app that syncs iOS and Windows natively. One tap. One task. Done.', status: 'live', url: 'https://zerofriction.app', devStart: '2025-09', logo: '/logos/zerofriction.png' },
+  { name: 'OpenPAX', tagline: 'Flight Booking API for AI', description: 'Where AI agents book travel. Search 300+ airlines, book flights via REST API or MCP server. Flat €9.99 per booking.', status: 'live', url: 'https://openpax.ai', devStart: '2026-02', favorite: true, logo: '/logos/openpax.png' },
+  { name: 'Zero-Friction Tasks', tagline: 'Personal Task Manager', description: 'The first and only Todo app that syncs iOS and Windows natively. One tap. One task. Done.', status: 'live', url: 'https://zerofriction.app', devStart: '2025-09', favorite: true, logo: '/logos/zerofriction.png' },
   { name: 'StarReply', tagline: 'Automated Google Review Replies', description: 'AI-powered replies that sound like you. Connect Google Business Profile, never worry about reviews again.', status: 'coming', url: 'https://starreply.ai', devStart: '2026-01', logo: '/logos/starreply.png' },
   { name: 'OAWS Performance', tagline: 'Podcast Investment Tracker', description: 'Stock picks from the "Ohne Aktien wird schwer" podcast vs. S&P 500 Index. Investment tracking since August 2024.', status: 'live', url: 'https://oaws-performance.vercel.app/', devStart: '2025-08', logo: '/logos/oaws.png' },
   { name: 'Seajet Wallet', tagline: 'Ferry Tickets to Wallet', description: 'Convert your SEAJETS ferry tickets to Apple or Google Wallet. Board faster.', status: 'live', url: 'https://seajetswallet.onrender.com/', devStart: '2025-07', logo: '/logos/seajets.png' },
@@ -17,8 +27,8 @@ const projects = [
   { name: 'Sheduler', tagline: 'Dynamic Event Agendas', description: 'Beautiful multi-day workshop agendas with automatic calendar sync for participants.', status: 'coming', url: 'https://www.sheduler.com', devStart: '2025-11', logo: '/logos/sheduler.svg' },
   { name: 'ETF Savings Calculator', tagline: 'Plan Your Wealth', description: 'The simplest yet most advanced ETF savings plan calculator. Visualize your future.', status: 'live', url: 'https://etf-rechner-sparplan.de', devStart: '2026-02', logo: '/logos/etf.png' },
   { name: 'HireSift', tagline: 'AI Applicant Screening', description: 'AI-powered hiring that sifts through applicants and shortlists the right talent.', status: 'live', url: 'https://hiresift.ai', devStart: '2026-02', logo: '/logos/hiresift.png' },
-  { name: 'SoloCoach', tagline: 'Booking & Payments for Coaches', description: 'Independent sports coaches take bookings and get paid in one app. Clients book on mobile web, payments run through Stripe. No spreadsheets, no chasing money.', status: 'live', url: 'https://solocoach.io/', devStart: '2026-04', logo: '/logos/solocoach.png' },
-  { name: 'MokkApp', tagline: 'App Store Screenshot Studio', description: 'Turn raw app screenshots into polished App Store visuals. The fastest way to design store listings that convert. Built for indie devs who ship.', status: 'live', url: 'https://mokkapp.app/', devStart: '2026-06', logo: '/logos/mokkapp.svg' },
+  { name: 'SoloCoach', tagline: 'Booking & Payments for Coaches', description: 'Independent sports coaches take bookings and get paid in one app. Clients book on mobile web, payments run through Stripe. No spreadsheets, no chasing money.', status: 'live', url: 'https://solocoach.io/', devStart: '2026-04', favorite: true, logo: '/logos/solocoach.png' },
+  { name: 'MokkApp', tagline: 'App Store Screenshot Studio', description: 'Turn raw app screenshots into polished App Store visuals. The fastest way to design store listings that convert. Built for indie devs who ship.', status: 'live', url: 'https://mokkapp.app/', devStart: '2026-06', favorite: true, logo: '/logos/mokkapp.svg' },
 ];
 
 const principles = [
@@ -44,6 +54,15 @@ const navLinks = [
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [sort, setSort] = useState<'date' | 'a-z' | 'fav'>('date');
+  const sortedProjects = [...projects].sort((a, b) => {
+    if (sort === 'a-z') return a.name.localeCompare(b.name);
+    if (sort === 'fav') {
+      const diff = (b.favorite ? 1 : 0) - (a.favorite ? 1 : 0);
+      if (diff !== 0) return diff;
+    }
+    return b.devStart.localeCompare(a.devStart); // newest first
+  });
 
   return (
     <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)]">
@@ -185,12 +204,29 @@ export default function Home() {
 
         {/* PROJECTS */}
         <section id="projects" className="border-b border-[var(--border)] px-6 md:px-12 py-20">
-          <div className="mono flex justify-between items-baseline mb-9 text-[12px] text-[var(--faint)]">
+          <div className="mono flex flex-wrap justify-between items-baseline gap-x-4 gap-y-2 mb-9 text-[12px] text-[var(--faint)]">
             <span>$ ls ./projects</span>
-            <span>{projects.length} tools</span>
+            <div className="flex items-center gap-2.5">
+              <span>sort:</span>
+              {(['date', 'a-z', 'fav'] as const).map((opt, i) => (
+                <span key={opt} className="flex items-center gap-2.5">
+                  {i > 0 && <span className="text-[var(--border2)]" aria-hidden="true">·</span>}
+                  <button
+                    type="button"
+                    onClick={() => setSort(opt)}
+                    aria-pressed={sort === opt}
+                    className={`transition-colors ${sort === opt ? 'text-[var(--green)]' : 'text-[var(--faint)] hover:text-[var(--ink)]'}`}
+                  >
+                    {opt}
+                  </button>
+                </span>
+              ))}
+              <span className="text-[var(--border2)]" aria-hidden="true">·</span>
+              <span>{projects.length} tools</span>
+            </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {projects.map((t) => (
+            {sortedProjects.map((t) => (
               <a
                 key={t.name}
                 href={t.url}
@@ -208,7 +244,10 @@ export default function Home() {
                   : <span className="inline-block flex-none w-[13px] h-[13px] border border-[var(--border2)] mt-1.5 group-hover:border-[var(--green)] transition-colors" />}
                 <div className="flex-1 flex flex-col gap-1.5">
                   <div className="flex justify-between items-baseline gap-3">
-                    <span className="mono font-bold text-[16px]">{t.name}</span>
+                    <span className="mono font-bold text-[16px] inline-flex items-center gap-1.5">
+                      {t.name}
+                      {t.favorite && <span className="text-[var(--green)] text-[12px] leading-none" title="favorite" aria-label="favorite">★</span>}
+                    </span>
                     <span className="mono text-[11px] whitespace-nowrap flex items-baseline gap-2.5">
                       {t.devStart && <span className="text-[var(--faint)]" title="dev start">{t.devStart}</span>}
                       {t.status === 'live'
