@@ -5,20 +5,20 @@ import { Logo } from '@/components/Logo';
 
 // Project data
 const projects = [
-  { name: 'Bill.Dock', tagline: 'AI Receipt & Expense Scanner', description: 'Snap a photo. Done. AI extracts everything and creates tax-ready expense reports.', status: 'live', url: 'https://billdock.io', logo: '/logos/billdock.png' },
-  { name: 'Jenda', tagline: 'Subscription Tracker', description: 'Connect Gmail or forward receipts. AI detects your subscriptions automatically. No bank access needed.', status: 'live', url: 'https://jenda.app', logo: '/logos/jenda.png' },
-  { name: 'AgentSpeed', tagline: 'AI Agent Readiness Scanner', description: 'Like PageSpeed, but for AI agents. Scans your site for invisible barriers that block AI agents and gives you actionable fixes.', status: 'live', url: 'https://agentspeed.dev', logo: '/logos/agentspeed.png' },
-  { name: 'OpenPAX', tagline: 'Flight Booking API for AI', description: 'Where AI agents book travel. Search 300+ airlines, book flights via REST API or MCP server. Flat €9.99 per booking.', status: 'live', url: 'https://openpax.ai', logo: '/logos/openpax.png' },
-  { name: 'Zero-Friction Tasks', tagline: 'Personal Task Manager', description: 'The first and only Todo app that syncs iOS and Windows natively. One tap. One task. Done.', status: 'live', url: 'https://zerofriction.app', logo: '/logos/zerofriction.png' },
-  { name: 'StarReply', tagline: 'Automated Google Review Replies', description: 'AI-powered replies that sound like you. Connect Google Business Profile, never worry about reviews again.', status: 'coming', url: 'https://starreply.ai', logo: '/logos/starreply.png' },
-  { name: 'OAWS Performance', tagline: 'Podcast Investment Tracker', description: 'Stock picks from the "Ohne Aktien wird schwer" podcast vs. S&P 500 Index. Investment tracking since August 2024.', status: 'live', url: 'https://oaws-performance.vercel.app/', logo: '/logos/oaws.png' },
-  { name: 'Seajet Wallet', tagline: 'Ferry Tickets to Wallet', description: 'Convert your SEAJETS ferry tickets to Apple or Google Wallet. Board faster.', status: 'live', url: 'https://seajetswallet.onrender.com/', logo: '/logos/seajets.png' },
-  { name: 'Jaukerl', tagline: 'Vaccination Record Analyzer', description: 'Analyze your Austrian ELGA vaccination records. Fast, secure, private.', status: 'live', url: 'https://www.jaukerl.com/', logo: '/logos/jaukerl.png' },
-  { name: 'Sheduler', tagline: 'Dynamic Event Agendas', description: 'Beautiful multi-day workshop agendas with automatic calendar sync for participants.', status: 'coming', url: 'https://www.sheduler.com', logo: '/logos/sheduler.svg' },
-  { name: 'ETF Savings Calculator', tagline: 'Plan Your Wealth', description: 'The simplest yet most advanced ETF savings plan calculator. Visualize your future.', status: 'live', url: 'https://etf-rechner-sparplan.de', logo: '/logos/etf.png' },
-  { name: 'HireSift', tagline: 'AI Applicant Screening', description: 'AI-powered hiring that sifts through applicants and shortlists the right talent.', status: 'live', url: 'https://hiresift.ai', logo: '/logos/hiresift.png' },
-  { name: 'SoloCoach', tagline: 'Booking & Payments for Coaches', description: 'Independent sports coaches take bookings and get paid in one app. Clients book on mobile web, payments run through Stripe. No spreadsheets, no chasing money.', status: 'live', url: 'https://solocoach.io/', logo: '/logos/solocoach.png' },
-  { name: 'MokkApp', tagline: 'App Store Screenshot Studio', description: 'Turn raw app screenshots into polished App Store visuals. The fastest way to design store listings that convert. Built for indie devs who ship.', status: 'live', url: 'https://mokkapp.app/', logo: '/logos/mokkapp.svg' },
+  { name: 'Bill.Dock', tagline: 'AI Receipt & Expense Scanner', description: 'Snap a photo. Done. AI extracts everything and creates tax-ready expense reports.', status: 'live', url: 'https://billdock.io', devStart: '2025-11', logo: '/logos/billdock.png' },
+  { name: 'Jenda', tagline: 'Subscription Tracker', description: 'Connect Gmail or forward receipts. AI detects your subscriptions automatically. No bank access needed.', status: 'live', url: 'https://jenda.app', devStart: '2026-01', logo: '/logos/jenda.png' },
+  { name: 'AgentSpeed', tagline: 'AI Agent Readiness Scanner', description: 'Like PageSpeed, but for AI agents. Scans your site for invisible barriers that block AI agents and gives you actionable fixes.', status: 'live', url: 'https://agentspeed.dev', devStart: '2026-03', logo: '/logos/agentspeed.png' },
+  { name: 'OpenPAX', tagline: 'Flight Booking API for AI', description: 'Where AI agents book travel. Search 300+ airlines, book flights via REST API or MCP server. Flat €9.99 per booking.', status: 'live', url: 'https://openpax.ai', devStart: '2026-02', logo: '/logos/openpax.png' },
+  { name: 'Zero-Friction Tasks', tagline: 'Personal Task Manager', description: 'The first and only Todo app that syncs iOS and Windows natively. One tap. One task. Done.', status: 'live', url: 'https://zerofriction.app', devStart: '2025-09', logo: '/logos/zerofriction.png' },
+  { name: 'StarReply', tagline: 'Automated Google Review Replies', description: 'AI-powered replies that sound like you. Connect Google Business Profile, never worry about reviews again.', status: 'coming', url: 'https://starreply.ai', devStart: '2026-01', logo: '/logos/starreply.png' },
+  { name: 'OAWS Performance', tagline: 'Podcast Investment Tracker', description: 'Stock picks from the "Ohne Aktien wird schwer" podcast vs. S&P 500 Index. Investment tracking since August 2024.', status: 'live', url: 'https://oaws-performance.vercel.app/', devStart: '2025-08', logo: '/logos/oaws.png' },
+  { name: 'Seajet Wallet', tagline: 'Ferry Tickets to Wallet', description: 'Convert your SEAJETS ferry tickets to Apple or Google Wallet. Board faster.', status: 'live', url: 'https://seajetswallet.onrender.com/', devStart: '2025-07', logo: '/logos/seajets.png' },
+  { name: 'Jaukerl', tagline: 'Vaccination Record Analyzer', description: 'Analyze your Austrian ELGA vaccination records. Fast, secure, private.', status: 'live', url: 'https://www.jaukerl.com/', devStart: '2025-07', logo: '/logos/jaukerl.png' },
+  { name: 'Sheduler', tagline: 'Dynamic Event Agendas', description: 'Beautiful multi-day workshop agendas with automatic calendar sync for participants.', status: 'coming', url: 'https://www.sheduler.com', devStart: '2025-11', logo: '/logos/sheduler.svg' },
+  { name: 'ETF Savings Calculator', tagline: 'Plan Your Wealth', description: 'The simplest yet most advanced ETF savings plan calculator. Visualize your future.', status: 'live', url: 'https://etf-rechner-sparplan.de', devStart: '2026-02', logo: '/logos/etf.png' },
+  { name: 'HireSift', tagline: 'AI Applicant Screening', description: 'AI-powered hiring that sifts through applicants and shortlists the right talent.', status: 'live', url: 'https://hiresift.ai', devStart: '2026-02', logo: '/logos/hiresift.png' },
+  { name: 'SoloCoach', tagline: 'Booking & Payments for Coaches', description: 'Independent sports coaches take bookings and get paid in one app. Clients book on mobile web, payments run through Stripe. No spreadsheets, no chasing money.', status: 'live', url: 'https://solocoach.io/', devStart: '2026-04', logo: '/logos/solocoach.png' },
+  { name: 'MokkApp', tagline: 'App Store Screenshot Studio', description: 'Turn raw app screenshots into polished App Store visuals. The fastest way to design store listings that convert. Built for indie devs who ship.', status: 'live', url: 'https://mokkapp.app/', devStart: '2026-06', logo: '/logos/mokkapp.svg' },
 ];
 
 const principles = [
@@ -209,9 +209,12 @@ export default function Home() {
                 <div className="flex-1 flex flex-col gap-1.5">
                   <div className="flex justify-between items-baseline gap-3">
                     <span className="mono font-bold text-[16px]">{t.name}</span>
-                    {t.status === 'live'
-                      ? <span className="mono text-[11px] text-[var(--green)] whitespace-nowrap">[live]</span>
-                      : <span className="mono text-[11px] text-[var(--border2)] whitespace-nowrap">[soon]</span>}
+                    <span className="mono text-[11px] whitespace-nowrap flex items-baseline gap-2.5">
+                      {t.devStart && <span className="text-[var(--faint)]" title="dev start">{t.devStart}</span>}
+                      {t.status === 'live'
+                        ? <span className="text-[var(--green)]">[live]</span>
+                        : <span className="text-[var(--border2)]">[soon]</span>}
+                    </span>
                   </div>
                   <span className="mono text-[12px] text-[var(--faint)]">{t.tagline}</span>
                   <span className="text-[14.5px] leading-[1.45] text-[var(--body)]">{t.description}</span>
