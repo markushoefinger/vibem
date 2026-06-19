@@ -46,7 +46,7 @@ export default function Imprint() {
 
           <h2 className="text-xl font-semibold text-[var(--text-strong)] mt-8 mb-4">Management</h2>
           <p className="text-[var(--text)] mb-4">
-            Managing Director: Mag. Markus Höfinger
+            Managing Director: Mag. Markus Hoefinger
           </p>
 
           <h2 className="text-xl font-semibold text-[var(--text-strong)] mt-8 mb-4">Regulatory Authority</h2>

@@ -40,7 +40,7 @@ export default function Privacy() {
               Halbgasse 1a, 1070 Vienna, Austria<br />
               Email: <a href="mailto:info@spacer-gif.com" className="text-[var(--primary)] hover:underline">info@spacer-gif.com</a><br />
               VAT ID: ATU70341613<br />
-              Managing Director: Mag. Markus Höfinger
+              Managing Director: Mag. Markus Hoefinger
             </p>
           </section>
 

@@ -3,558 +3,234 @@
 import { useState } from 'react';
 import { Logo } from '@/components/Logo';
 
-// Minimal SVG Icons
-const Icons = {
-  target: (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <circle cx="12" cy="12" r="10" />
-      <circle cx="12" cy="12" r="6" />
-      <circle cx="12" cy="12" r="2" />
-    </svg>
-  ),
-  sparkle: (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path d="M12 2v4m0 12v4m10-10h-4M6 12H2m15.07-7.07l-2.83 2.83M9.76 14.24l-2.83 2.83m11.14 0l-2.83-2.83M9.76 9.76L6.93 6.93" />
-    </svg>
-  ),
-  bolt: (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-    </svg>
-  ),
-  user: (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-      <circle cx="12" cy="7" r="4" />
-    </svg>
-  ),
-  cpu: (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <rect x="4" y="4" width="16" height="16" rx="2" />
-      <rect x="9" y="9" width="6" height="6" />
-      <path d="M9 1v3m6-3v3M9 20v3m6-3v3M1 9h3m-3 6h3M20 9h3m-3 6h3" />
-    </svg>
-  ),
-  receipt: (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path d="M9 14l2 2 4-4" />
-      <path d="M4 4v16l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V4l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1z" />
-    </svg>
-  ),
-  calendar: (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <rect x="3" y="4" width="18" height="18" rx="2" />
-      <path d="M16 2v4M8 2v4M3 10h18" />
-    </svg>
-  ),
-  check: (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path d="M20 6L9 17l-5-5" />
-    </svg>
-  ),
-  mail: (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <rect x="2" y="4" width="20" height="16" rx="2" />
-      <path d="M22 6l-10 7L2 6" />
-    </svg>
-  ),
-  chart: (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path d="M3 3v18h18" />
-      <path d="M7 16l4-4 4 4 6-6" />
-    </svg>
-  ),
-  wallet: (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <rect x="2" y="6" width="20" height="14" rx="2" />
-      <path d="M2 10h20" />
-      <circle cx="16" cy="14" r="1" />
-    </svg>
-  ),
-  ship: (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path d="M3 17l2 4h14l2-4" />
-      <path d="M5 17V9l7-4 7 4v8" />
-      <path d="M12 5v8" />
-    </svg>
-  ),
-  health: (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z" />
-      <path d="M12 8v8m-4-4h8" />
-    </svg>
-  ),
-  scan: (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path d="M3 7V5a2 2 0 012-2h2m10 0h2a2 2 0 012 2v2m0 10v2a2 2 0 01-2 2h-2M7 21H5a2 2 0 01-2-2v-2" />
-      <circle cx="12" cy="12" r="4" />
-    </svg>
-  ),
-  plane: (
-    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 00-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
-    </svg>
-  ),
-  arrow: (
-    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
-    </svg>
-  ),
-};
-
 // Project data
 const projects = [
-  {
-    name: 'Bill.Dock',
-    tagline: 'AI Receipt & Expense Scanner',
-    description: 'Snap a photo. Done. AI extracts everything and creates tax-ready expense reports.',
-    status: 'live',
-    url: 'https://billdock.io',
-    color: 'primary',
-    icon: Icons.receipt,
-  },
-  {
-    name: 'Jenda',
-    tagline: 'Subscription Tracker',
-    description: 'Connect Gmail or forward receipts. AI detects your subscriptions automatically. No bank access needed.',
-    status: 'live',
-    url: 'https://jenda.app',
-    color: 'coral',
-    icon: Icons.calendar,
-  },
-  {
-    name: 'AgentSpeed',
-    tagline: 'AI Agent Readiness Scanner',
-    description: 'Like PageSpeed, but for AI agents. Scans your site for invisible barriers that block AI agents and gives you actionable fixes.',
-    status: 'live',
-    url: 'https://agentspeed.dev',
-    color: 'coral',
-    icon: Icons.scan,
-  },
-  {
-    name: 'OpenPAX',
-    tagline: 'Flight Booking API for AI',
-    description: 'Where AI agents book travel. Search 300+ airlines, book flights via REST API or MCP server. Flat €9.99 per booking.',
-    status: 'live',
-    url: 'https://openpax.ai',
-    color: 'primary',
-    icon: Icons.plane,
-  },
-  {
-    name: 'Zero-Friction Tasks',
-    tagline: 'Personal Task Manager',
-    description: 'The first and only Todo app that syncs iOS and Windows natively. One tap. One task. Done.',
-    status: 'live',
-    url: 'https://zerofriction.app',
-    color: 'primary',
-    icon: Icons.check,
-  },
-  {
-    name: 'StarReply',
-    tagline: 'Automated Google Review Replies',
-    description: 'AI-powered replies that sound like you. Connect Google Business Profile, never worry about reviews again.',
-    status: 'coming',
-    url: 'https://starreply.ai',
-    color: 'coral',
-    icon: Icons.mail,
-  },
-  {
-    name: 'OAWS Performance',
-    tagline: 'Podcast Investment Tracker',
-    description: 'Stock picks from the "Ohne Aktien wird schwer" podcast vs. S&P 500 Index. Investment tracking since August 2024.',
-    status: 'live',
-    url: 'https://oaws-performance.vercel.app/',
-    color: 'primary',
-    icon: Icons.chart,
-  },
-  {
-    name: 'Seajet Wallet',
-    tagline: 'Ferry Tickets to Wallet',
-    description: 'Convert your SEAJETS ferry tickets to Apple or Google Wallet. Board faster.',
-    status: 'live',
-    url: 'https://seajetswallet.onrender.com/',
-    color: 'coral',
-    icon: Icons.ship,
-  },
-  {
-    name: 'Jaukerl',
-    tagline: 'Vaccination Record Analyzer',
-    description: 'Analyze your Austrian ELGA vaccination records. Fast, secure, private.',
-    status: 'live',
-    url: 'https://www.jaukerl.com/',
-    color: 'primary',
-    icon: Icons.health,
-  },
-  {
-    name: 'Sheduler',
-    tagline: 'Dynamic Event Agendas',
-    description: 'Beautiful multi-day workshop agendas with automatic calendar sync for participants.',
-    status: 'coming',
-    url: 'https://www.sheduler.com',
-    color: 'coral',
-    icon: Icons.calendar,
-  },
-  {
-    name: 'ETF Savings Calculator',
-    tagline: 'Plan Your Wealth',
-    description: 'The simplest yet most advanced ETF savings plan calculator. Visualize your future.',
-    status: 'live',
-    url: 'https://etf-rechner-sparplan.de',
-    color: 'primary',
-    icon: Icons.chart,
-  },
-  {
-    name: 'Grouple',
-    tagline: 'Group Payments Made Easy',
-    description: 'Split bills and collect group payments frictionlessly. No app downloads needed.',
-    status: 'coming',
-    url: 'https://grouple.net',
-    color: 'coral',
-    icon: Icons.wallet,
-  },
-  {
-    name: 'HireSift',
-    tagline: 'AI Applicant Screening',
-    description: 'AI-powered hiring that sifts through applicants and shortlists the right talent.',
-    status: 'live',
-    url: 'https://hiresift.ai',
-    color: 'primary',
-    icon: Icons.user,
-  },
+  { name: 'Bill.Dock', tagline: 'AI Receipt & Expense Scanner', description: 'Snap a photo. Done. AI extracts everything and creates tax-ready expense reports.', status: 'live', url: 'https://billdock.io' },
+  { name: 'Jenda', tagline: 'Subscription Tracker', description: 'Connect Gmail or forward receipts. AI detects your subscriptions automatically. No bank access needed.', status: 'live', url: 'https://jenda.app' },
+  { name: 'AgentSpeed', tagline: 'AI Agent Readiness Scanner', description: 'Like PageSpeed, but for AI agents. Scans your site for invisible barriers that block AI agents and gives you actionable fixes.', status: 'live', url: 'https://agentspeed.dev' },
+  { name: 'OpenPAX', tagline: 'Flight Booking API for AI', description: 'Where AI agents book travel. Search 300+ airlines, book flights via REST API or MCP server. Flat €9.99 per booking.', status: 'live', url: 'https://openpax.ai' },
+  { name: 'Zero-Friction Tasks', tagline: 'Personal Task Manager', description: 'The first and only Todo app that syncs iOS and Windows natively. One tap. One task. Done.', status: 'live', url: 'https://zerofriction.app' },
+  { name: 'StarReply', tagline: 'Automated Google Review Replies', description: 'AI-powered replies that sound like you. Connect Google Business Profile, never worry about reviews again.', status: 'coming', url: 'https://starreply.ai' },
+  { name: 'OAWS Performance', tagline: 'Podcast Investment Tracker', description: 'Stock picks from the "Ohne Aktien wird schwer" podcast vs. S&P 500 Index. Investment tracking since August 2024.', status: 'live', url: 'https://oaws-performance.vercel.app/' },
+  { name: 'Seajet Wallet', tagline: 'Ferry Tickets to Wallet', description: 'Convert your SEAJETS ferry tickets to Apple or Google Wallet. Board faster.', status: 'live', url: 'https://seajetswallet.onrender.com/' },
+  { name: 'Jaukerl', tagline: 'Vaccination Record Analyzer', description: 'Analyze your Austrian ELGA vaccination records. Fast, secure, private.', status: 'live', url: 'https://www.jaukerl.com/' },
+  { name: 'Sheduler', tagline: 'Dynamic Event Agendas', description: 'Beautiful multi-day workshop agendas with automatic calendar sync for participants.', status: 'coming', url: 'https://www.sheduler.com' },
+  { name: 'ETF Savings Calculator', tagline: 'Plan Your Wealth', description: 'The simplest yet most advanced ETF savings plan calculator. Visualize your future.', status: 'live', url: 'https://etf-rechner-sparplan.de' },
+  { name: 'Grouple', tagline: 'Group Payments Made Easy', description: 'Split bills and collect group payments frictionlessly. No app downloads needed.', status: 'coming', url: 'https://grouple.net' },
+  { name: 'HireSift', tagline: 'AI Applicant Screening', description: 'AI-powered hiring that sifts through applicants and shortlists the right talent.', status: 'live', url: 'https://hiresift.ai' },
 ];
 
-const philosophyItems = [
-  { icon: Icons.target, title: 'Minimalism', desc: "If it adds complexity, it doesn't ship." },
-  { icon: Icons.sparkle, title: 'Attention to Detail', desc: "The things most won't notice but everyone will feel." },
-  { icon: Icons.bolt, title: 'Zero Friction', desc: 'One tap. One task. Done.' },
-  { icon: Icons.user, title: 'User First', desc: 'From user needs backwards to technology.' },
+const principles = [
+  { n: '01', title: 'Minimalism', body: "If it adds complexity, it doesn't ship." },
+  { n: '02', title: 'Attention to Detail', body: "The things most won't notice but everyone will feel." },
+  { n: '03', title: 'Zero Friction', body: 'One tap. One task. Done.' },
+  { n: '04', title: 'User First', body: 'From user needs backwards to technology.' },
+];
+
+const badges = ['User-First', 'AI-Powered', 'Zero Friction', 'Privacy-Focused', 'Made in Vienna'];
+
+const aiTags = [
+  'Smart parsing that understands intent',
+  'Auto-categorization that learns',
+  'Natural language that just works',
+];
+
+const navLinks = [
+  { label: 'projects', href: '#projects' },
+  { label: 'story', href: '#about' },
+  { label: 'principles', href: '#principles' },
 ];
 
 export default function Home() {
-  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[var(--bg)]/90 border-b border-[var(--border)]">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-3">
-            <Logo size={36} />
-            <span className="font-bold text-xl text-[var(--text-strong)]">SpacerGIF</span>
+    <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)]">
+      {/* HEADER */}
+      <header className="sticky top-0 z-20 border-b border-[var(--border)] bg-[rgba(241,236,224,0.85)] backdrop-blur-[8px]">
+        <div className="flex items-center justify-between px-6 md:px-12 py-4">
+          <a href="#" className="flex items-center gap-3 text-[var(--ink)]">
+            <Logo size={30} />
+            <span className="mono font-bold text-[17px] tracking-[-0.01em]">SpacerGIF</span>
           </a>
-          
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#about" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">About</a>
-            <a href="#projects" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">Projects</a>
-            <a href="#contact" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">Contact</a>
-          </div>
 
-          {/* Mobile Burger Button */}
-          <button 
-            className="md:hidden p-2 text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors"
+          {/* Desktop nav */}
+          <nav className="mono hidden md:flex items-center gap-7 text-[13px]">
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href} className="text-[var(--muted)] hover:text-[var(--ink)] transition-colors">{l.label}</a>
+            ))}
+            <a href="mailto:hello@spacer-gif.com" className="inline-flex items-center px-[18px] py-[9px] bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--green)] transition-colors">contact</a>
+          </nav>
+
+          {/* Mobile burger */}
+          <button
+            className="md:hidden mono inline-flex items-center justify-center w-[34px] h-[34px] border border-[var(--ink)] text-[var(--ink)]"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? (
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
+            {mobileMenuOpen ? '×' : '≡'}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-[var(--border)] bg-[var(--bg)]">
-            <div className="px-6 py-4 flex flex-col gap-4">
-              <a 
-                href="#about" 
-                className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About
-              </a>
-              <a 
-                href="#projects" 
-                className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Projects
-              </a>
-              <a 
-                href="#contact" 
-                className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Contact
-              </a>
-            </div>
-          </div>
+          <nav className="mono md:hidden border-t border-[var(--border)] px-6 py-4 flex flex-col gap-4 text-[14px]">
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href} onClick={() => setMobileMenuOpen(false)} className="text-[var(--muted)] hover:text-[var(--ink)] transition-colors">{l.label}</a>
+            ))}
+            <a href="mailto:hello@spacer-gif.com" onClick={() => setMobileMenuOpen(false)} className="text-[var(--green)]">contact</a>
+          </nav>
         )}
-      </nav>
+      </header>
 
-      {/* Hero */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--primary-bg)] text-[var(--primary)] text-sm font-medium mb-8">
-            <span className="w-2 h-2 rounded-full bg-[var(--primary)] animate-pulse"></span>
-            Micro-SaaS Studio
-          </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-[var(--text-strong)] mb-6 leading-tight">
-            Removing friction,<br />
-            <span className="text-[var(--primary)]">one tool at a time.</span>
+      <div className="max-w-[1200px] mx-auto">
+        {/* HERO */}
+        <section className="grid-paper border-b border-[var(--border)] px-6 md:px-12 pt-20 md:pt-[120px] pb-20 md:pb-[104px]">
+          <div className="mono text-[13px] text-[var(--green)] mb-8 md:mb-10">~/vienna/micro-saas $ <span className="text-[var(--ink)]">whoami</span></div>
+          <h1 className="font-medium tracking-[-0.03em] leading-[1.0] m-0 mb-9 text-[clamp(40px,8.5vw,92px)]">
+            Removing friction, one tool at a time.<span className="tm-cursor" />
           </h1>
-          <p className="text-xl text-[var(--text)] max-w-2xl mx-auto mb-10">
-            We find everyday annoyances and build AI-powered tools that make them disappear. 
-            Simple products. Perfect use cases. Zero friction.
+          <p className="mono text-[16px] leading-[1.65] text-[var(--body)] m-0 mb-12">
+            We find everyday annoyances and build AI-powered tools that make them disappear. Simple products. Perfect use cases. Zero friction.
           </p>
-          <div className="flex items-center justify-center gap-4">
-            <a 
-              href="#projects"
-              className="px-6 py-3 bg-[var(--primary)] text-white font-semibold rounded-xl hover:bg-[var(--primary-light)] transition-all hover:-translate-y-0.5 shadow-lg shadow-[var(--primary)]/20"
-            >
-              Explore Projects
-            </a>
-            <a 
-              href="#about"
-              className="px-6 py-3 bg-[var(--card)] text-[var(--text-strong)] font-semibold rounded-xl border border-[var(--border)] hover:border-[var(--primary)] transition-all hover:-translate-y-0.5"
-            >
-              Our Story
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Philosophy Badges */}
-      <section className="py-12 px-6 border-y border-[var(--border)]">
-        <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-4 md:gap-8">
-          {['User-First', 'AI-Powered', 'Zero Friction', 'Privacy-Focused', 'Made in Vienna'].map((badge) => (
-            <span key={badge} className="px-4 py-2 bg-[var(--card)] border border-[var(--border)] rounded-full text-sm font-medium text-[var(--text-muted)]">
-              {badge}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      {/* Founder */}
-      <section id="about" className="py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-5 gap-12 items-start">
-            {/* Photo & Badge */}
-            <div className="md:col-span-2 flex flex-col items-center text-center">
-              <div className="relative mb-4">
-                <img 
-                  src="/founder.png" 
-                  alt="Markus Höfinger - Founder SpacerGIF"
-                  className="w-40 h-40 rounded-2xl object-cover border-4 border-[var(--border)]"
-                />
-                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 bg-[var(--primary)] text-white text-xs font-semibold rounded-full">
-                  Founder
-                </span>
-              </div>
-              <h3 className="text-xl font-bold text-[var(--text-strong)]">Markus Höfinger</h3>
-              <p className="text-sm text-[var(--text-muted)] mb-4">Founder, SpacerGIF</p>
-              <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                Vienna, Austria
-              </div>
+          <div className="flex gap-3 items-center flex-wrap">
+            <a href="#projects" className="mono inline-flex items-center px-7 py-[15px] bg-[var(--green)] text-[var(--paper)] text-[14px] hover:bg-[var(--green-dark)] transition-colors">Explore Projects</a>
+            <a href="#about" className="mono inline-flex items-center px-7 py-[15px] border border-[var(--ink)] text-[var(--ink)] text-[14px] hover:bg-[var(--ink)] hover:text-[var(--paper)] transition-colors">Our Story</a>
+            <div className="mono flex items-center gap-[9px] ml-2.5 text-[11px] text-[var(--faint)]">
+              <span className="inline-block w-3 h-3 border border-[var(--border2)]" />width=1 height=1
             </div>
+          </div>
+        </section>
 
-            {/* Story */}
-            <div className="md:col-span-3">
-              <h2 className="text-2xl font-bold text-[var(--text-strong)] mb-4">From Dial-Up to AI</h2>
-              <p className="text-lg text-[var(--text)] mb-4 leading-relaxed">
-                &ldquo;I&apos;ve been building digital products since 1993 — when I co-founded Austria&apos;s first digital agency at 23. 
-                Since then, I&apos;ve spent 30+ years in the digital space, from startups to leading a 150-person team at Accenture Song.&rdquo;
-              </p>
-              <p className="text-[var(--text)] mb-4">
-                Today, I&apos;m back to my roots: building products. Not for enterprises with endless budgets, but for real people with real problems. 
-                The kind of tools I&apos;d want to use myself.
-              </p>
-              <p className="text-[var(--text)] mb-6">
-                SpacerGIF is my answer to 30 years of watching software promise simplicity and deliver complexity. 
-                We build micro-SaaS that actually makes sense — one perfect use case at a time.
-              </p>
+        {/* STACK / BADGES */}
+        <section className="border-b border-[var(--border)] px-6 md:px-12 py-12">
+          <div className="mono text-[12px] text-[var(--faint)] mb-6">$ cat stack.txt</div>
+          <div className="flex flex-wrap gap-3">
+            {badges.map((b) => (
+              <span key={b} className="mono text-[13px] text-[var(--muted)] border border-[var(--border)] bg-[var(--card)] px-[14px] py-[7px]">{b}</span>
+            ))}
+          </div>
+        </section>
+
+        {/* FOUNDER */}
+        <section id="about" className="border-b border-[var(--border)] px-6 md:px-12 py-20">
+          <div className="mono text-[12px] text-[var(--faint)] mb-10">// founder</div>
+          <div className="grid md:grid-cols-[240px_1fr] gap-12">
+            <div className="flex flex-col gap-4">
+              <img src="/founder.jpg" alt="Markus Hoefinger - Founder SpacerGIF" className="w-full max-w-[240px] aspect-square object-cover" />
+              <div>
+                <div className="text-[22px] font-medium tracking-[-0.01em]">Markus Hoefinger</div>
+                <div className="mono text-[13px] text-[var(--green)] mt-1">Founder, SpacerGIF</div>
+                <div className="mono text-[12px] text-[var(--faint)] mt-1">Vienna, Austria</div>
+              </div>
               <div className="flex flex-wrap gap-2">
-                {['30+ Years Digital', 'Serial Founder', 'Product-First'].map((tag) => (
-                  <span key={tag} className="px-3 py-1 bg-[var(--primary-bg)] text-[var(--primary)] text-xs font-medium rounded-full">
-                    {tag}
-                  </span>
+                {['30+ Years Digital', 'Serial Founder', 'Product-First'].map((t) => (
+                  <span key={t} className="mono text-[11px] text-[var(--muted)] border border-[var(--border)] px-2.5 py-1">{t}</span>
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Philosophy */}
-      <section className="py-24 px-6 bg-[var(--card)] border-y border-[var(--border)]">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-[var(--text-strong)] mb-6">
-                We Build Micro-SaaS That Actually Makes Sense
-              </h2>
-              <p className="text-[var(--text)] mb-4">
-                We&apos;re not building the flashy, never-been-done-before kind of products. 
-                We&apos;re building the kind that&apos;s been around forever but never quite worked the way it should.
+              <h2 className="font-medium text-[clamp(28px,5vw,40px)] tracking-[-0.02em] m-0 mb-7">From Dial-Up to AI</h2>
+              <p className="mono text-[15px] leading-[1.8] text-[var(--body)] m-0 mb-4">
+                &ldquo;I&apos;ve been building digital products since 1993 — when I co-founded Austria&apos;s first digital agency at 23. Since then, I&apos;ve spent 30+ years in the digital space, from startups to leading a 150-person team at Accenture Song.&rdquo;
               </p>
-              <p className="text-[var(--text)] mb-4">
-                We look for those moments where people think &ldquo;there has to be a better way&rdquo; — and build that better way.
+              <p className="mono text-[15px] leading-[1.8] text-[var(--body)] m-0 mb-4">
+                Today, I&apos;m back to my roots: building products. Not for enterprises with endless budgets, but for real people with real problems. The kind of tools I&apos;d want to use myself.
               </p>
-              <p className="text-[var(--text)]">
-                Every feature we add, we ask: does this make things simpler or more complex? 
-                If it&apos;s the latter, it doesn&apos;t ship.
+              <p className="mono text-[15px] leading-[1.8] text-[var(--body)] m-0">
+                SpacerGIF is my answer to 30 years of watching software promise simplicity and deliver complexity. We build micro-SaaS that actually makes sense — one perfect use case at a time.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              {philosophyItems.map((item) => (
-                <div key={item.title} className="p-5 bg-[var(--bg)] border border-[var(--border)] rounded-2xl">
-                  <div className="w-10 h-10 rounded-xl bg-[var(--primary-bg)] text-[var(--primary)] flex items-center justify-center mb-3">
-                    {item.icon}
-                  </div>
-                  <h3 className="font-semibold text-[var(--text-strong)] mb-1">{item.title}</h3>
-                  <p className="text-xs text-[var(--text-muted)]">{item.desc}</p>
+          </div>
+        </section>
+
+        {/* PRINCIPLES */}
+        <section id="principles" className="border-b border-[var(--border)] px-6 md:px-12 py-20">
+          <div className="mono text-[12px] text-[var(--faint)] mb-10">// principles</div>
+          <div className="mb-12">
+            <h2 className="font-medium text-[clamp(26px,4.5vw,36px)] tracking-[-0.02em] leading-[1.15] m-0 mb-6">We Build Micro-SaaS That Actually Makes Sense</h2>
+            <p className="mono text-[14px] leading-[1.75] text-[var(--body)] m-0 mb-3">We&apos;re not building the flashy, never-been-done-before kind of products. We&apos;re building the kind that&apos;s been around forever but never quite worked the way it should.</p>
+            <p className="mono text-[14px] leading-[1.75] text-[var(--body)] m-0 mb-3">We look for those moments where people think &ldquo;there has to be a better way&rdquo; — and build that better way.</p>
+            <p className="mono text-[14px] leading-[1.75] text-[var(--body)] m-0">Every feature we add, we ask: does this make things simpler or more complex? If it&apos;s the latter, it doesn&apos;t ship.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[18px]">
+            {principles.map((p) => (
+              <div key={p.n} className="border border-[var(--border)] bg-[var(--card)] px-[22px] pt-[26px] pb-8 flex flex-col gap-4 min-h-[178px]">
+                <div className="flex items-center gap-[9px]">
+                  <span className="inline-block w-[11px] h-[11px] border border-[var(--green)]" />
+                  <span className="mono text-[12px] text-[var(--green)]">{p.n}</span>
                 </div>
+                <span className="font-medium text-[19px] tracking-[-0.01em]">{p.title}</span>
+                <span className="mono text-[12px] leading-[1.6] text-[var(--muted)]">{p.body}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* AI */}
+        <section className="border-b border-[var(--border)] px-6 md:px-12 py-20">
+          <div className="mono text-[12px] text-[var(--faint)] mb-10">// ai</div>
+          <div>
+            <h2 className="font-medium text-[clamp(26px,4.5vw,36px)] tracking-[-0.02em] m-0 mb-6">AI That Actually Helps</h2>
+            <p className="mono text-[15px] leading-[1.8] text-[var(--body)] m-0 mb-8">We&apos;re not building AI wrappers that slap a chat interface on everything and call it innovation. We&apos;re integrating AI where it genuinely solves problems.</p>
+            <div className="flex flex-wrap gap-3">
+              {aiTags.map((t) => (
+                <span key={t} className="mono text-[12px] text-[var(--green)] border border-[var(--green)] px-[14px] py-2">{t}</span>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* AI Section */}
-      <section className="py-20 px-6 bg-[var(--card)] border-y border-[var(--border)]">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="w-16 h-16 rounded-2xl bg-[var(--coral-bg)] text-[var(--coral)] flex items-center justify-center mx-auto mb-6">
-            {Icons.cpu}
+        {/* PROJECTS */}
+        <section id="projects" className="border-b border-[var(--border)] px-6 md:px-12 py-20">
+          <div className="mono flex justify-between items-baseline mb-9 text-[12px] text-[var(--faint)]">
+            <span>$ ls ./projects</span>
+            <span>{projects.length} tools</span>
           </div>
-          <h2 className="text-3xl font-bold text-[var(--text-strong)] mb-4">
-            AI That Actually Helps
-          </h2>
-          <p className="text-[var(--text)] max-w-xl mx-auto mb-8">
-            We&apos;re not building AI wrappers that slap a chat interface on everything and call it innovation. 
-            We&apos;re integrating AI where it genuinely solves problems.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {['Smart parsing that understands intent', 'Auto-categorization that learns', 'Natural language that just works'].map((item) => (
-              <span key={item} className="px-4 py-2 bg-[var(--coral-bg)] text-[var(--coral)] rounded-full text-sm font-medium">
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Projects */}
-      <section id="projects" className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-[var(--text-strong)] mb-4">Our Projects</h2>
-            <p className="text-[var(--text)] max-w-xl mx-auto">
-              Single-purpose tools that do one thing exceptionally well. No feature bloat. No &ldquo;enterprise&rdquo; complexity.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {projects.map((t) => (
               <a
-                key={project.name}
-                href={project.url}
-                target={project.url !== '#' ? '_blank' : undefined}
+                key={t.name}
+                href={t.url}
+                target="_blank"
                 rel="noopener noreferrer"
-                className={`group relative p-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl transition-all hover:border-[var(--primary)] hover:shadow-lg hover:-translate-y-1 ${project.url === '#' ? 'cursor-default' : ''}`}
-                onMouseEnter={() => setHoveredProject(project.name)}
-                onMouseLeave={() => setHoveredProject(null)}
+                className="group border border-[var(--border)] bg-[var(--card)] px-[22px] py-5 flex items-start gap-[15px] hover:border-[var(--ink)] transition-colors"
               >
-                {/* Status Badge */}
-                <div className="absolute top-4 right-4">
-                  {project.status === 'live' ? (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[var(--success-bg)] text-[var(--success)] text-xs font-semibold rounded-full">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--success)]"></span>
-                      Live
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center px-2.5 py-1 bg-[var(--bg)] text-[var(--text-muted)] text-xs font-semibold rounded-full">
-                      Coming Soon
-                    </span>
-                  )}
-                </div>
-
-                {/* Project Icon */}
-                <div className={`w-12 h-12 rounded-xl mb-4 flex items-center justify-center ${project.color === 'primary' ? 'bg-[var(--primary-bg)] text-[var(--primary)]' : 'bg-[var(--coral-bg)] text-[var(--coral)]'}`}>
-                  {project.icon}
-                </div>
-
-                <h3 className="text-lg font-bold text-[var(--text-strong)] mb-1 group-hover:text-[var(--primary)] transition-colors">
-                  {project.name}
-                </h3>
-                <p className={`text-sm font-medium mb-3 ${project.color === 'primary' ? 'text-[var(--primary)]' : 'text-[var(--coral)]'}`}>
-                  {project.tagline}
-                </p>
-                <p className="text-sm text-[var(--text-muted)]">
-                  {project.description}
-                </p>
-
-                {/* Hover Arrow */}
-                {project.url !== '#' && (
-                  <div className={`absolute bottom-6 right-6 w-8 h-8 rounded-full bg-[var(--bg)] flex items-center justify-center transition-all text-[var(--primary)] ${hoveredProject === project.name ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`}>
-                    {Icons.arrow}
+                <span className="inline-block flex-none w-[13px] h-[13px] border border-[var(--border2)] mt-1.5 group-hover:border-[var(--green)] transition-colors" />
+                <div className="flex-1 flex flex-col gap-1.5">
+                  <div className="flex justify-between items-baseline gap-3">
+                    <span className="mono font-bold text-[16px]">{t.name}</span>
+                    {t.status === 'live'
+                      ? <span className="mono text-[11px] text-[var(--green)] whitespace-nowrap">[live]</span>
+                      : <span className="mono text-[11px] text-[var(--border2)] whitespace-nowrap">[soon]</span>}
                   </div>
-                )}
+                  <span className="mono text-[12px] text-[var(--faint)]">{t.tagline}</span>
+                  <span className="text-[14.5px] leading-[1.45] text-[var(--body)]">{t.description}</span>
+                </div>
               </a>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Contact */}
-      <section id="contact" className="py-24 px-6">
-        <div className="max-w-xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-[var(--text-strong)] mb-4">Let&apos;s Talk</h2>
-          <p className="text-[var(--text)] mb-8">
-            Have an everyday problem that deserves a better solution? We&apos;d love to hear about it.
-          </p>
-          <a 
-            href="mailto:hello@spacer-gif.com"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--primary)] text-white font-semibold rounded-xl hover:bg-[var(--primary-light)] transition-all hover:-translate-y-0.5 shadow-lg shadow-[var(--primary)]/20"
-          >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <path d="M22 6l-10 7L2 6" />
-            </svg>
-            hello@spacer-gif.com
-          </a>
-        </div>
-      </section>
+        {/* CONTACT */}
+        <section id="contact" className="border-b border-[var(--border)] px-6 md:px-12 py-24">
+          <div className="mono text-[12px] text-[var(--faint)] mb-5">// contact</div>
+          <a href="mailto:hello@spacer-gif.com" className="mono inline-block font-bold text-[clamp(28px,6vw,44px)] tracking-[-0.025em] text-[var(--green)] hover:text-[var(--ink)] transition-colors no-underline">hello@spacer-gif.com</a>
+          <div className="mono text-[13px] text-[var(--faint)] mt-5">// made in Vienna</div>
+        </section>
+      </div>
 
-      {/* Footer */}
-      <footer className="py-12 px-6 border-t border-[var(--border)]">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-6">
-            <div className="flex items-center gap-3">
-              <Logo size={32} />
-              <span className="font-semibold text-[var(--text-strong)]">SpacerGIF</span>
-              <span className="text-[var(--text-muted)]">— Micro-SaaS Studio, Vienna</span>
-            </div>
-            <div className="flex items-center gap-6 text-sm">
-              <a href="/legal/imprint" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">Imprint</a>
-              <a href="/legal/privacy" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">Privacy</a>
-              <a href="/legal/terms" className="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors">Terms</a>
-            </div>
-          </div>
-          <div className="text-center text-sm text-[var(--text-muted)]">
-            © {new Date().getFullYear()} S&C Holding GmbH. All rights reserved.
-          </div>
+      {/* FOOTER */}
+      <footer className="max-w-[1200px] mx-auto px-6 md:px-12 py-7 flex flex-col sm:flex-row gap-4 justify-between items-center mono text-[12px] text-[var(--faint)]">
+        <div className="flex items-center gap-2.5 text-[var(--faint)]">
+          <Logo size={18} />
+          <span>© {new Date().getFullYear()} S&amp;C Holding GmbH</span>
         </div>
+        <span className="flex gap-[22px]">
+          <a href="/legal/imprint" className="text-[var(--faint)] hover:text-[var(--ink)] transition-colors">imprint</a>
+          <a href="/legal/privacy" className="text-[var(--faint)] hover:text-[var(--ink)] transition-colors">privacy</a>
+          <a href="/legal/terms" className="text-[var(--faint)] hover:text-[var(--ink)] transition-colors">terms</a>
+        </span>
       </footer>
     </div>
   );
