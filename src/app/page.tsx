@@ -29,6 +29,7 @@ const projects: Project[] = [
   { name: 'HireSift', tagline: 'AI Applicant Screening', description: 'AI-powered hiring that sifts through applicants and shortlists the right talent.', status: 'live', url: 'https://hiresift.ai', devStart: '2026-02', logo: '/logos/hiresift.png' },
   { name: 'SoloCoach', tagline: 'Booking & Payments for Coaches', description: 'Independent sports coaches take bookings and get paid in one app. Clients book on mobile web, payments run through Stripe. No spreadsheets, no chasing money.', status: 'live', url: 'https://solocoach.io/', devStart: '2026-04', favorite: true, logo: '/logos/solocoach.png' },
   { name: 'MokkApp', tagline: 'App Store Screenshot Studio', description: 'Turn raw app screenshots into polished App Store visuals. The fastest way to design store listings that convert. Built for indie devs who ship.', status: 'live', url: 'https://mokkapp.app/', devStart: '2026-06', favorite: true, logo: '/logos/mokkapp.svg' },
+  { name: 'Glimpy', tagline: 'Math Trainer for Children', description: 'A calculator that works the other way round: it poses the problem, the child types the answer. Ages 5 to 9, five levels, and a drill built from the problems they got wrong. No ads, no accounts, no data leaving the phone.', status: 'coming', url: 'https://www.spacer-gif.com/glimpy', devStart: '2026-07', logo: '/logos/glimpy.png' },
 ];
 
 const principles = [
