@@ -30,6 +30,7 @@ const projects: Project[] = [
   { name: 'SoloCoach', tagline: 'Booking & Payments for Coaches', description: 'Independent sports coaches take bookings and get paid in one app. Clients book on mobile web, payments run through Stripe. No spreadsheets, no chasing money.', status: 'live', url: 'https://solocoach.io/', devStart: '2026-04', favorite: true, logo: '/logos/solocoach.png' },
   { name: 'MokkApp', tagline: 'App Store Screenshot Studio', description: 'Turn raw app screenshots into polished App Store visuals. The fastest way to design store listings that convert. Built for indie devs who ship.', status: 'live', url: 'https://mokkapp.app/', devStart: '2026-06', favorite: true, logo: '/logos/mokkapp.svg' },
   { name: 'Glimpy', tagline: 'Math Trainer for Children', description: 'A calculator that works the other way round: it poses the problem, the child types the answer. Ages 5 to 9, five levels, and a drill built from the problems they got wrong. No ads, no accounts, no data leaving the phone.', status: 'coming', url: 'https://www.spacer-gif.com/glimpy', devStart: '2026-07', logo: '/logos/glimpy.png' },
+  { name: 'HeyDiane', tagline: 'Agent-Ready Conversation Knowledge', description: 'Record meetings, client calls and voice notes. AI turns them into speaker-labelled conversations, summaries, follow-up emails and searchable knowledge. Automatically.', status: 'live', url: 'https://www.heydiane.ai/', devStart: '2026-08', logo: '/logos/heydiane.svg' },
 ];
 
 const principles = [
@@ -135,7 +136,7 @@ export default function Home() {
 
         {/* FOUNDER */}
         <section id="about" className="border-b border-[var(--border)] px-6 md:px-12 py-20">
-          <div className="mono text-[12px] text-[var(--faint)] mb-10">// founder</div>
+          <div className="mono text-[12px] text-[var(--faint)] mb-10">{'// founder'}</div>
           <div className="grid md:grid-cols-[240px_1fr] gap-12">
             <div className="flex flex-col gap-4">
               <img src="/founder.jpg" alt="Markus Hoefinger - Founder SpacerGIF" className="w-full max-w-[240px] aspect-square object-cover" />
@@ -162,7 +163,7 @@ export default function Home() {
                 Now I am back to where I started: building products with my own hands. Not for enterprises. For real people with real problems. The kind of tools I want to use myself.
               </p>
               <p className="mono text-[15px] leading-[1.8] text-[var(--body)] m-0">
-                Every product here started the same way. Something annoyed me. I waited for someone to fix it. Nobody did. So I built it, with AI doing the heavy lifting. Thirteen annoyances, thirteen tools. If they bug me, chances are they bug you too.
+                Every product here started the same way. Something annoyed me. I waited for someone to fix it. Nobody did. So I built it, with AI doing the heavy lifting. Sixteen annoyances, sixteen tools. If they bug me, chances are they bug you too.
               </p>
             </div>
           </div>
@@ -170,7 +171,7 @@ export default function Home() {
 
         {/* PRINCIPLES */}
         <section id="principles" className="border-b border-[var(--border)] px-6 md:px-12 py-20">
-          <div className="mono text-[12px] text-[var(--faint)] mb-10">// principles</div>
+          <div className="mono text-[12px] text-[var(--faint)] mb-10">{'// principles'}</div>
           <div className="mb-12">
             <h2 className="font-medium text-[clamp(26px,4.5vw,36px)] tracking-[-0.02em] leading-[1.15] m-0 mb-6">One Problem. One Tool. Finished.</h2>
             <p className="mono text-[14px] leading-[1.75] text-[var(--body)] m-0">Most software tries to do everything and nails nothing. I pick one annoying problem and build the tool that finally solves it the way it always should have worked. Then I move to the next one. The test for every feature is the same question: does this make the tool simpler or more complex? If it is the second one, it does not ship.</p>
@@ -191,7 +192,7 @@ export default function Home() {
 
         {/* AI */}
         <section className="border-b border-[var(--border)] px-6 md:px-12 py-20">
-          <div className="mono text-[12px] text-[var(--faint)] mb-10">// ai</div>
+          <div className="mono text-[12px] text-[var(--faint)] mb-10">{'// ai'}</div>
           <div>
             <h2 className="font-medium text-[clamp(26px,4.5vw,36px)] tracking-[-0.02em] m-0 mb-6">AI Where It Earns Its Place</h2>
             <p className="mono text-[15px] leading-[1.8] text-[var(--body)] m-0 mb-8">No chat box slapped on top of everything. AI sits inside the product only where it does real work: reading a receipt, sorting a subscription, understanding what you actually meant.</p>
@@ -266,9 +267,9 @@ export default function Home() {
 
         {/* CONTACT */}
         <section id="contact" className="border-b border-[var(--border)] px-6 md:px-12 py-24">
-          <div className="mono text-[12px] text-[var(--faint)] mb-5">// contact</div>
+          <div className="mono text-[12px] text-[var(--faint)] mb-5">{'// contact'}</div>
           <a href="mailto:hello@spacer-gif.com" className="mono inline-block font-bold text-[clamp(28px,6vw,44px)] tracking-[-0.025em] text-[var(--green)] hover:text-[var(--ink)] transition-colors no-underline">hello@spacer-gif.com</a>
-          <div className="mono text-[13px] text-[var(--faint)] mt-5">// made in Vienna</div>
+          <div className="mono text-[13px] text-[var(--faint)] mt-5">{'// made in Vienna'}</div>
         </section>
       </div>
 
